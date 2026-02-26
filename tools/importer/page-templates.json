@@ -1,0 +1,25 @@
+{
+  "templates": [
+    {
+      "name": "financial-leasing-services",
+      "urls": [
+        "https://www.thermofisher.com/in/en/home/products-and-services/services/financial-leasing-services.html"
+      ],
+      "description": "Thermo Fisher Financial and Leasing Services page with hero banner, intro text, value proposition columns, and financing solution cards.",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [".well-cmp"]
+        },
+        {
+          "name": "columns",
+          "instances": [".parsys_column.cq-colctrl-lt3 > .cq-colctrl-lt3-c0 h3"]
+        },
+        {
+          "name": "cards",
+          "instances": [".parsys_column.cq-colctrl-bordered-lt3"]
+        }
+      ]
+    }
+  ]
+}
