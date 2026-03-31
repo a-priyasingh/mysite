@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Migration Baseline Report: girlscoutshop.com</title>
+  <style>
+    :root {
+      --color-primary: #003366;
+      --color-accent: #00AE58;
+      --color-bg: #f8f9fa;
+      --color-card: #ffffff;
+      --color-text: #1a1a2e;
+      --color-muted: #6c757d;
+      --color-border: #dee2e6;
+      --color-red: #dc3545;
+      --color-orange: #fd7e14;
+      --color-green: #28a745;
+      --color-blue: #0d6efd;
+      --color-purple: #6f42c1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--color-primary), #004e9a);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .header h1 { font-size: 2rem; margin-bottom: 8px; }
+    .header .subtitle { opacity: 0.85; font-size: 1rem; }
+    .header .meta { margin-top: 16px; font-size: 0.85rem; opacity: 0.7; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .toolbar {
+      background: white;
+      border-bottom: 1px solid var(--color-border);
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .toolbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toolbar .nav-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .toolbar .nav-links a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .toolbar .nav-links a:hover { text-decoration: underline; }
+
+    .btn-print {
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .btn-print:hover { background: #004e9a; }
+
+    .section {
+      background: var(--color-card);
+      border-radius: 10px;
+      margin: 24px 0;
+      padding: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .section h2 {
+      color: var(--color-primary);
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--color-accent);
+    }
+
+    .section h3 {
+      color: var(--color-text);
+      font-size: 1.1rem;
+      margin: 24px 0 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+      font-size: 0.88rem;
+    }
+
+    th {
+      background: #f1f3f5;
+      text-align: left;
+      padding: 10px 14px;
+      font-weight: 600;
+      color: var(--color-primary);
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    td {
+      padding: 8px 14px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+
+    tr:hover td { background: #f8f9fa; }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-red { background: #fde8e8; color: var(--color-red); }
+    .badge-orange { background: #fff3e0; color: #e65100; }
+    .badge-green { background: #e8f5e9; color: var(--color-green); }
+    .badge-blue { background: #e3f2fd; color: var(--color-blue); }
+    .badge-purple { background: #f3e5f5; color: var(--color-purple); }
+
+    .callout {
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+
+    .callout-critical { background: #fde8e8; border-left: 4px solid var(--color-red); }
+    .callout-warning { background: #fff3e0; border-left: 4px solid var(--color-orange); }
+    .callout-info { background: #e3f2fd; border-left: 4px solid var(--color-blue); }
+    .callout-success { background: #e8f5e9; border-left: 4px solid var(--color-green); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .stat-card {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card .value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .stat-card .label {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      margin-top: 4px;
+    }
+
+    .color-swatch {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      vertical-align: middle;
+      margin-right: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      padding: 6px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 0.9rem;
+    }
+    .checklist li::before {
+      content: "☐ ";
+      color: var(--color-muted);
+    }
+
+    .risk-high { color: var(--color-red); font-weight: 600; }
+    .risk-medium { color: var(--color-orange); font-weight: 600; }
+    .risk-low { color: var(--color-green); font-weight: 600; }
+
+    .footer-bar {
+      text-align: center;
+      padding: 32px;
+      color: var(--color-muted);
+      font-size: 0.8rem;
+    }
+
+    @media print {
+      .toolbar { display: none; }
+      .section { box-shadow: none; break-inside: avoid; }
+      body { background: white; }
+    }
+
+    @media (max-width: 768px) {
+      .header h1 { font-size: 1.4rem; }
+      .section { padding: 20px; }
+      .toolbar .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>Pre-Migration Baseline Report</h1>
+    <div class="subtitle">girlscoutshop.com &rarr; AEM Edge Delivery Services</div>
+    <div class="meta">Report Date: March 30, 2026 &nbsp;|&nbsp; Source: https://www.girlscoutshop.com/</div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="container">
+    <div class="nav-links">
+      <a href="#performance">Performance</a>
+      <a href="#seo">SEO</a>
+      <a href="#accessibility">Accessibility</a>
+      <a href="#content">Content</a>
+      <a href="#design">Design</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#tech">Tech Stack</a>
+      <a href="#risk">Risk Matrix</a>
+      <a href="#checklist">Checklist</a>
+      <a href="#comparison">Comparison</a>
+    </div>
+    <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- PERFORMANCE -->
+  <div class="section" id="performance">
+    <h2>1. Performance Metrics</h2>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="value">2.56 MB</div>
+        <div class="label">Total Page Weight</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">127</div>
+        <div class="label">HTTP Requests</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">452 ms</div>
+        <div class="label">Full Page Load</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">1,828</div>
+        <div class="label">DOM Elements</div>
+      </div>
+    </div>
+
+    <h3>1.1 Page Load Timing (Homepage)</h3>
+    <table>
+      <thead><tr><th>Metric</th><th>Current</th><th>EDS Target</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>DNS Lookup</td><td>0 ms</td><td>0 ms</td><td>Cached/preresolved</td></tr>
+        <tr><td>TCP Connect</td><td>39 ms</td><td>&lt; 20 ms</td><td>TLS handshake included</td></tr>
+        <tr><td>Time to First Byte (TTFB)</td><td>30 ms</td><td>&lt; 200 ms</td><td>Good baseline</td></tr>
+        <tr><td>DOM Interactive</td><td>348 ms</td><td>&lt; 200 ms</td><td>JS-heavy SPA affects this</td></tr>
+        <tr><td>DOM Content Loaded</td><td>376 ms</td><td>&lt; 300 ms</td><td></td></tr>
+        <tr><td>Full Page Load</td><td>452 ms</td><td>&lt; 500 ms</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <h3>1.2 Resource Weight</h3>
+    <table>
+      <thead><tr><th>Resource Type</th><th>Count</th><th>Transfer Size</th><th>EDS Target</th></tr></thead>
+      <tbody>
+        <tr><td>JavaScript</td><td>7 files</td><td>94.7 KB</td><td>&lt; 50 KB</td></tr>
+        <tr><td>Stylesheets</td><td>2 files</td><td>(bundled)</td><td>&lt; 20 KB</td></tr>
+        <tr><td>Images</td><td>64 resources</td><td>1.9 MB</td><td>&lt; 500 KB</td></tr>
+        <tr><td>Fonts</td><td>4 files</td><td>198.5 KB</td><td>&lt; 100 KB</td></tr>
+        <tr><td>Other (APIs, etc.)</td><td>52 requests</td><td>363.1 KB</td><td>Minimize</td></tr>
+        <tr style="font-weight:700"><td>Total</td><td>127 requests</td><td>2.56 MB</td><td>&lt; 1 MB</td></tr>
+      </tbody>
+    </table>
+
+    <h3>1.3 Core Web Vitals (To Be Measured)</h3>
+    <div class="callout callout-info">
+      Run <strong>PageSpeed Insights</strong> on the live site to capture lab + field CWV scores before migration begins.
+    </div>
+    <table>
+      <thead><tr><th>Metric</th><th>Target</th><th>How to Measure</th></tr></thead>
+      <tbody>
+        <tr><td>Largest Contentful Paint (LCP)</td><td>&lt; 2.5s</td><td>PageSpeed Insights / CrUX</td></tr>
+        <tr><td>First Input Delay (FID)</td><td>&lt; 100ms</td><td>CrUX data</td></tr>
+        <tr><td>Cumulative Layout Shift (CLS)</td><td>&lt; 0.1</td><td>PageSpeed Insights</td></tr>
+        <tr><td>Interaction to Next Paint (INP)</td><td>&lt; 200ms</td><td>CrUX data</td></tr>
+        <tr><td>First Contentful Paint (FCP)</td><td>&lt; 1.8s</td><td>PageSpeed Insights</td></tr>
+        <tr><td>Time to Interactive (TTI)</td><td>&lt; 3.8s</td><td>Lighthouse</td></tr>
+      </tbody>
+    </table>
+
+    <h3>1.4 DOM Complexity</h3>
+    <table>
+      <thead><tr><th>Metric</th><th>Current</th><th>EDS Target</th></tr></thead>
+      <tbody>
+        <tr><td>Total DOM Elements</td><td>1,828</td><td>&lt; 800</td></tr>
+        <tr><td>Max DOM Depth</td><td>20 levels</td><td>&lt; 12</td></tr>
+        <tr><td>Total Text Nodes</td><td>2,290</td><td>Proportional</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SEO -->
+  <div class="section" id="seo">
+    <h2>2. SEO Parameters</h2>
+
+    <h3>2.1 Meta Tags</h3>
+    <table>
+      <thead><tr><th>Parameter</th><th>Current Value</th><th>Status</th><th>Migration Action</th></tr></thead>
+      <tbody>
+        <tr><td>Title</td><td>Girl Scout Shop | Girl Scout Uniforms, Program, Outdoor Gear and More!</td><td><span class="badge badge-green">Present</span></td><td>Preserve exactly</td></tr>
+        <tr><td>Meta Description</td><td>Whether you're a troop leader looking for the newest Girl Scout badges... (155 chars)</td><td><span class="badge badge-green">Present</span></td><td>Preserve</td></tr>
+        <tr><td>Meta Keywords</td><td>Girl Scout Shop, Girl Scouts of the USA</td><td><span class="badge badge-green">Present</span></td><td>Preserve</td></tr>
+        <tr><td>Canonical URL</td><td>https://www.girlscoutshop.com/</td><td><span class="badge badge-green">Present</span></td><td>Ensure on all pages</td></tr>
+        <tr><td>Viewport</td><td>width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no</td><td><span class="badge badge-orange">Issue</span></td><td>Remove user-scalable=no</td></tr>
+        <tr><td>Language</td><td>en-US</td><td><span class="badge badge-green">Present</span></td><td>Preserve</td></tr>
+        <tr><td>Charset</td><td>utf-8</td><td><span class="badge badge-green">Present</span></td><td>Preserve</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.2 Open Graph / Social Meta</h3>
+    <table>
+      <thead><tr><th>Tag</th><th>Status</th><th>Migration Action</th></tr></thead>
+      <tbody>
+        <tr><td>og:title</td><td><span class="badge badge-red">Missing</span></td><td>Add</td></tr>
+        <tr><td>og:description</td><td><span class="badge badge-red">Missing</span></td><td>Add</td></tr>
+        <tr><td>og:image</td><td><span class="badge badge-red">Missing</span></td><td>Add (brand image)</td></tr>
+        <tr><td>og:url</td><td><span class="badge badge-red">Missing</span></td><td>Add</td></tr>
+        <tr><td>og:type</td><td><span class="badge badge-red">Missing</span></td><td>Add (website)</td></tr>
+        <tr><td>twitter:card</td><td><span class="badge badge-red">Missing</span></td><td>Add (summary_large_image)</td></tr>
+        <tr><td>twitter:site</td><td><span class="badge badge-red">Missing</span></td><td>Add (@girlscouts)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.3 Structured Data (Schema.org)</h3>
+    <div class="callout callout-warning">No structured data (JSON-LD) found on the site. Add Organization, WebSite, BreadcrumbList, and Product schemas during migration.</div>
+
+    <h3>2.4 Robots & Sitemap</h3>
+    <table>
+      <thead><tr><th>Parameter</th><th>Value</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>robots.txt</td><td>Allow: / (all allowed)</td><td><span class="badge badge-green">Present</span></td></tr>
+        <tr><td>Sitemap</td><td>sitemap_www.girlscoutshop.com_Index.xml</td><td><span class="badge badge-green">Present</span></td></tr>
+        <tr><td>Sitemap accessible</td><td>Sub-sitemap returned 404</td><td><span class="badge badge-red">Broken</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.5 Heading Hierarchy</h3>
+    <div class="callout callout-critical"><strong>Critical:</strong> No H1 tag on homepage. This is a significant SEO issue that must be fixed during migration.</div>
+    <table>
+      <thead><tr><th>Tag</th><th>Count</th><th>Sample Content</th></tr></thead>
+      <tbody>
+        <tr><td>H1</td><td><strong style="color:var(--color-red)">0</strong></td><td>Missing!</td></tr>
+        <tr><td>H2</td><td>7</td><td>Uniforms, Shop By Grade Level, Uniform Customization, What's New, Trefoil Fun Finds</td></tr>
+        <tr><td>H3</td><td>0</td><td>&mdash;</td></tr>
+        <tr><td>H4</td><td>7</td><td>Store Finder, Quick Links, Shop, Need Help, Official GS USA Links</td></tr>
+        <tr><td>H5</td><td>1</td><td>Shop Your Council</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ACCESSIBILITY -->
+  <div class="section" id="accessibility">
+    <h2>3. Accessibility Baseline</h2>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="value" style="color:var(--color-red)">0</div>
+        <div class="label">ARIA Labels</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" style="color:var(--color-red)">0</div>
+        <div class="label">Skip Links</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" style="color:var(--color-orange)">19.8%</div>
+        <div class="label">Images with Alt Text</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" style="color:var(--color-red)">0</div>
+        <div class="label">&lt;main&gt; Landmarks</div>
+      </div>
+    </div>
+
+    <h3>3.1 ARIA Landmarks</h3>
+    <table>
+      <thead><tr><th>Landmark</th><th>Count</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Navigation (&lt;nav&gt;)</td><td>7</td><td><span class="badge badge-green">Present</span></td></tr>
+        <tr><td>Main content (&lt;main&gt;)</td><td>0</td><td><span class="badge badge-red">Missing</span></td></tr>
+        <tr><td>Banner (&lt;header&gt;)</td><td>1</td><td><span class="badge badge-green">Present</span></td></tr>
+        <tr><td>Content Info (&lt;footer&gt;)</td><td>1</td><td><span class="badge badge-green">Present</span></td></tr>
+        <tr><td>Search (role="search")</td><td>0</td><td><span class="badge badge-red">Missing</span></td></tr>
+        <tr><td>Elements with aria-label</td><td>0</td><td><span class="badge badge-red">Missing</span></td></tr>
+        <tr><td>Skip Links</td><td>0</td><td><span class="badge badge-red">Missing</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 Image Accessibility</h3>
+    <div class="callout callout-critical"><strong>Critical:</strong> 80% of images lack meaningful alt text. 15 images are completely missing the alt attribute.</div>
+    <table>
+      <thead><tr><th>Metric</th><th>Count</th><th>Percentage</th></tr></thead>
+      <tbody>
+        <tr><td>Total Images</td><td>91</td><td>100%</td></tr>
+        <tr><td>With meaningful alt text</td><td>18</td><td>19.8%</td></tr>
+        <tr><td>With empty alt (alt="")</td><td>58</td><td>63.7%</td></tr>
+        <tr><td>Missing alt entirely</td><td>15</td><td style="color:var(--color-red);font-weight:700">16.5%</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.3 Issues Summary</h3>
+    <table>
+      <thead><tr><th>Issue</th><th>Severity</th><th>Current</th><th>EDS Target</th></tr></thead>
+      <tbody>
+        <tr><td>Missing H1</td><td><span class="badge badge-red">High</span></td><td>0 H1 tags</td><td>1 per page</td></tr>
+        <tr><td>No &lt;main&gt; landmark</td><td><span class="badge badge-red">High</span></td><td>Missing</td><td>Required</td></tr>
+        <tr><td>No skip navigation</td><td><span class="badge badge-orange">Medium</span></td><td>Missing</td><td>Required</td></tr>
+        <tr><td>No role="search"</td><td><span class="badge badge-orange">Medium</span></td><td>Missing</td><td>Required</td></tr>
+        <tr><td>No ARIA labels</td><td><span class="badge badge-red">High</span></td><td>0 labels</td><td>All interactive</td></tr>
+        <tr><td>Images without alt</td><td><span class="badge badge-red">High</span></td><td>15 images</td><td>0</td></tr>
+        <tr><td>user-scalable=no</td><td><span class="badge badge-red">High</span></td><td>Present</td><td>Remove</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="section" id="content">
+    <h2>4. Content & Asset Inventory</h2>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="value">507</div><div class="label">Total Links</div></div>
+      <div class="stat-card"><div class="value">436</div><div class="label">Internal Links</div></div>
+      <div class="stat-card"><div class="value">71</div><div class="label">External Links</div></div>
+      <div class="stat-card"><div class="value">4</div><div class="label">Forms</div></div>
+    </div>
+
+    <h3>4.1 Navigation Structure</h3>
+    <p style="margin-bottom:8px"><strong>Utility Nav:</strong> Shop Your Council | FAQ | Contact Us | Catalogs | Store Locator | Quick Order | Login | Sign Up</p>
+    <table>
+      <thead><tr><th>Category</th><th>Color</th></tr></thead>
+      <tbody>
+        <tr><td>NEW</td><td><span class="color-swatch" style="background:#F37021"></span>Orange</td></tr>
+        <tr><td>GIRLS</td><td><span class="color-swatch" style="background:#EC008B"></span>Pink</td></tr>
+        <tr><td>ADULTS & LEADERS</td><td><span class="color-swatch" style="background:#EC008B"></span>Magenta</td></tr>
+        <tr><td>BADGES & PROGRAM</td><td><span class="color-swatch" style="background:#6E298D"></span>Purple-Blue</td></tr>
+        <tr><td>TOYS & OUTDOORS</td><td><span class="color-swatch" style="background:#004E9A"></span>Blue</td></tr>
+        <tr><td>COUNCIL</td><td><span class="color-swatch" style="background:#00AE58"></span>Green</td></tr>
+        <tr><td>SALE</td><td><span class="color-swatch" style="background:#d4d400"></span>Yellow</td></tr>
+      </tbody>
+    </table>
+
+    <h3>4.2 Homepage Content Sections</h3>
+    <table>
+      <thead><tr><th>Section</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>Hero Banner</td><td>Full-width image</td><td>"NEW Spring Favorites" with SHOP NOW CTA</td></tr>
+        <tr><td>Promo Banner</td><td>Text bar</td><td>"Free Gift With Purchase of a Uniform" code</td></tr>
+        <tr><td>Uniforms</td><td>Product carousel</td><td>Horizontal scroll of uniform items</td></tr>
+        <tr><td>Shop By Grade Level</td><td>Avatar cards</td><td>Grade level icons (Daisy&ndash;Ambassador)</td></tr>
+        <tr><td>Badges & Awards</td><td>Full-width banner</td><td>Image with SHOP ALL CTA</td></tr>
+        <tr><td>Uniform Customization</td><td>CTA section</td><td>Customization service promo</td></tr>
+        <tr><td>Promotional Banner</td><td>Full-width</td><td>"Exploration never tasted so sweet" campaign</td></tr>
+        <tr><td>Official Apparel</td><td>Banner</td><td>Branded apparel promotion</td></tr>
+        <tr><td>What's New</td><td>Product carousel</td><td>New arrival products</td></tr>
+        <tr><td>Trefoil Fun Finds</td><td>Product carousel</td><td>Themed product picks</td></tr>
+        <tr><td>Shop By Category</td><td>Icon grid</td><td>Category icons</td></tr>
+        <tr><td>Promotional Cards</td><td>Card grid</td><td>3 promo cards</td></tr>
+        <tr><td>Email Signup</td><td>CTA bar</td><td>"Join Our Email List"</td></tr>
+      </tbody>
+    </table>
+
+    <h3>4.3 Forms</h3>
+    <table>
+      <thead><tr><th>Form</th><th>Location</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Search</td><td>Header</td><td>Product search</td></tr>
+        <tr><td>Login</td><td>Header dropdown</td><td>User authentication</td></tr>
+        <tr><td>Store Locator</td><td>Footer</td><td>Find local store</td></tr>
+        <tr><td>Email Signup</td><td>Footer</td><td>Newsletter subscription</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DESIGN -->
+  <div class="section" id="design">
+    <h2>5. Design System / Visual Tokens</h2>
+
+    <h3>5.1 Typography</h3>
+    <table>
+      <thead><tr><th>Font Family</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Trefoil Sans</strong></td><td>Primary brand font</td></tr>
+        <tr><td>FontAwesome</td><td>Icons</td></tr>
+        <tr><td>girl_scouts_icons</td><td>Custom icon font</td></tr>
+        <tr><td>monospace</td><td>Fallback</td></tr>
+      </tbody>
+    </table>
+
+    <h3>5.2 Brand Color Palette</h3>
+    <table>
+      <thead><tr><th>Color</th><th>Hex</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td><span class="color-swatch" style="background:#00AE58"></span>Girl Scout Green</td><td>#00AE58</td><td>Primary brand, buttons, CTAs</td></tr>
+        <tr><td><span class="color-swatch" style="background:#EC008B"></span>Hot Pink</td><td>#EC008B</td><td>Girls category, accents</td></tr>
+        <tr><td><span class="color-swatch" style="background:#F5A4C7"></span>Light Pink</td><td>#F5A4C7</td><td>Soft accents</td></tr>
+        <tr><td><span class="color-swatch" style="background:#FCDFEB"></span>Softer Pink</td><td>#FCDFEB</td><td>Backgrounds</td></tr>
+        <tr><td><span class="color-swatch" style="background:#F37021"></span>Orange</td><td>#F37021</td><td>NEW category</td></tr>
+        <tr><td><span class="color-swatch" style="background:#FBCDB2"></span>Light Orange</td><td>#FBCDB2</td><td>Backgrounds</td></tr>
+        <tr><td><span class="color-swatch" style="background:#6E298D"></span>Purple</td><td>#6E298D</td><td>Badges category</td></tr>
+        <tr><td><span class="color-swatch" style="background:#E0D5EA"></span>Light Purple</td><td>#E0D5EA</td><td>Backgrounds</td></tr>
+        <tr><td><span class="color-swatch" style="background:#004E9A"></span>Navy Blue</td><td>#004E9A</td><td>Program category</td></tr>
+        <tr><td><span class="color-swatch" style="background:#DDE1F0"></span>Light Navy</td><td>#DDE1F0</td><td>Backgrounds</td></tr>
+        <tr><td><span class="color-swatch" style="background:#00ABE6"></span>Sky Blue</td><td>#00ABE6</td><td>Outdoors category</td></tr>
+        <tr><td><span class="color-swatch" style="background:#B2D235"></span>Lime Green</td><td>#B2D235</td><td>Accents</td></tr>
+        <tr><td><span class="color-swatch" style="background:#EDF4D5"></span>Light Lime</td><td>#EDF4D5</td><td>Backgrounds</td></tr>
+      </tbody>
+    </table>
+
+    <h3>5.3 Text Colors</h3>
+    <table>
+      <thead><tr><th>Color</th><th>Hex</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td><span class="color-swatch" style="background:#000"></span>Black</td><td>#000000</td><td>Body text</td></tr>
+        <tr><td><span class="color-swatch" style="background:#222"></span>Near Black</td><td>#222222</td><td>Headings</td></tr>
+        <tr><td><span class="color-swatch" style="background:#222426"></span>Dark Gray</td><td>#222426</td><td>Secondary text</td></tr>
+        <tr><td><span class="color-swatch" style="background:#4D5256"></span>Medium Gray</td><td>#4D5256</td><td>Muted text</td></tr>
+        <tr><td><span class="color-swatch" style="background:#AFAFAF"></span>Light Gray</td><td>#AFAFAF</td><td>Disabled/placeholder</td></tr>
+        <tr><td><span class="color-swatch" style="background:#fff;border:1px solid #ccc"></span>White</td><td>#FFFFFF</td><td>Text on dark backgrounds</td></tr>
+        <tr><td><span class="color-swatch" style="background:#00AE58"></span>Green</td><td>#00AE58</td><td>Links, CTAs</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ANALYTICS -->
+  <div class="section" id="analytics">
+    <h2>6. Analytics & Tracking Inventory</h2>
+
+    <h3>6.1 Tracking Scripts Detected</h3>
+    <table>
+      <thead><tr><th>Service</th><th>Detected</th><th>Migration Action</th></tr></thead>
+      <tbody>
+        <tr><td>Google Analytics (gtag)</td><td><span class="badge badge-green">Yes</span></td><td>Migrate to delayed.js</td></tr>
+        <tr><td>Google Tag Manager</td><td><span class="badge badge-green">Yes</span></td><td>Migrate to delayed.js</td></tr>
+        <tr><td>Facebook Pixel</td><td><span class="badge badge-green">Yes</span></td><td>Migrate to delayed.js</td></tr>
+        <tr><td>Pinterest Tag</td><td><span class="badge badge-green">Yes</span></td><td>Migrate to delayed.js</td></tr>
+        <tr><td>Microsoft Clarity</td><td><span class="badge badge-green">Yes</span></td><td>Migrate to delayed.js</td></tr>
+        <tr><td>New Relic (NREUM)</td><td><span class="badge badge-green">Yes</span></td><td>Evaluate &mdash; EDS has built-in RUM</td></tr>
+        <tr><td>Siteimprove</td><td><span class="badge badge-green">Yes</span></td><td>Migrate to delayed.js</td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.2 Cookie Consent</h3>
+    <div class="callout callout-warning">No cookie consent mechanism detected. Consider adding one depending on jurisdictional requirements (GDPR, CCPA).</div>
+
+    <h3>6.3 Third-Party Integrations</h3>
+    <table>
+      <thead><tr><th>Integration</th><th>Purpose</th><th>Migration Consideration</th></tr></thead>
+      <tbody>
+        <tr><td>NetSuite / SuiteCommerce</td><td>E-commerce platform</td><td>Major &mdash; product/cart/checkout</td></tr>
+        <tr><td>New Relic</td><td>Performance monitoring</td><td>EDS has built-in RUM</td></tr>
+        <tr><td>Siteimprove</td><td>Accessibility monitoring</td><td>Can continue with EDS</td></tr>
+        <tr><td>Pinterest</td><td>Social commerce</td><td>Move to delayed.js</td></tr>
+        <tr><td>Facebook</td><td>Advertising pixel</td><td>Move to delayed.js</td></tr>
+        <tr><td>Google Ads</td><td>Advertising (AW-769071483)</td><td>Move to delayed.js</td></tr>
+        <tr><td>Microsoft Clarity</td><td>Heatmaps/recordings</td><td>Move to delayed.js</td></tr>
+      </tbody>
+    </table>
+
+    <h3>6.4 Social Media</h3>
+    <table>
+      <thead><tr><th>Platform</th><th>URL</th></tr></thead>
+      <tbody>
+        <tr><td>Facebook</td><td>https://www.facebook.com/GirlScouts</td></tr>
+        <tr><td>Twitter/X</td><td>https://twitter.com/girlscouts</td></tr>
+        <tr><td>Pinterest</td><td>https://www.pinterest.com/gsusa/</td></tr>
+        <tr><td>Instagram</td><td>https://www.instagram.com/girlscouts/</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TECH STACK -->
+  <div class="section" id="tech">
+    <h2>7. Technical Stack Analysis</h2>
+
+    <h3>7.1 Current Technology Stack</h3>
+    <table>
+      <thead><tr><th>Component</th><th>Technology</th><th>Migration Impact</th></tr></thead>
+      <tbody>
+        <tr><td>Platform</td><td>NetSuite SuiteCommerce Advanced (SCA)</td><td><span class="badge badge-red">High</span> &mdash; Complete re-architecture</td></tr>
+        <tr><td>Frontend</td><td>jQuery + Backbone.js + RequireJS</td><td><span class="badge badge-red">High</span> &mdash; Replace with vanilla JS</td></tr>
+        <tr><td>CSS</td><td>Custom + Bootstrap elements</td><td><span class="badge badge-orange">Medium</span> &mdash; Rewrite to CSS custom props</td></tr>
+        <tr><td>Templates</td><td>Handlebars (server-rendered)</td><td><span class="badge badge-red">High</span> &mdash; Replace with EDS model</td></tr>
+        <tr><td>Cart/Checkout</td><td>SCA Shopping module</td><td><span class="badge badge-red">Critical</span> &mdash; Requires integration</td></tr>
+        <tr><td>Search</td><td>SCA built-in search</td><td><span class="badge badge-orange">Medium</span> &mdash; Need replacement</td></tr>
+        <tr><td>CDN</td><td>NetSuite hosting</td><td><span class="badge badge-green">Replaced</span> &mdash; EDS CDN</td></tr>
+        <tr><td>SSL</td><td>HTTPS enforced</td><td><span class="badge badge-green">Maintained</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RISK MATRIX -->
+  <div class="section" id="risk">
+    <h2>8. Migration Risk Matrix</h2>
+
+    <h3>8.1 High-Risk Items</h3>
+    <table>
+      <thead><tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><td class="risk-high">E-commerce (cart, checkout, account)</td><td>Loss of purchasing capability</td><td>Plan headless commerce integration</td></tr>
+        <tr><td class="risk-high">Product catalog rendering</td><td>All product pages break</td><td>Define product page template</td></tr>
+        <tr><td class="risk-high">Search functionality</td><td>Users can't find products</td><td>Implement search integration (Algolia, etc.)</td></tr>
+        <tr><td class="risk-high">Council-specific pricing</td><td>Council features break</td><td>Plan API integration layer</td></tr>
+      </tbody>
+    </table>
+
+    <h3>8.2 Medium-Risk Items</h3>
+    <table>
+      <thead><tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><td class="risk-medium">7+ analytics scripts</td><td>Tracking data gaps</td><td>Validate all tracking post-migration</td></tr>
+        <tr><td class="risk-medium">No structured data</td><td>Missed SEO opportunity</td><td>Add during migration</td></tr>
+        <tr><td class="risk-medium">Font loading (Trefoil Sans)</td><td>Brand inconsistency</td><td>Optimize with font-display: swap</td></tr>
+        <tr><td class="risk-medium">500+ internal links</td><td>Broken links</td><td>Create comprehensive redirect map</td></tr>
+      </tbody>
+    </table>
+
+    <h3>8.3 Low-Risk Items</h3>
+    <table>
+      <thead><tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><td class="risk-low">Missing OG/social tags</td><td>No regression (already missing)</td><td>Add during migration</td></tr>
+        <tr><td class="risk-low">No cookie consent</td><td>No regression</td><td>Add if legally required</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="section" id="checklist">
+    <h2>9. Baseline Measurement Checklist</h2>
+    <p style="margin-bottom:16px;color:var(--color-muted)">Capture these values before migration begins. Use the <strong>Print / Save PDF</strong> button to save and fill in manually.</p>
+
+    <h3>Performance (PageSpeed Insights)</h3>
+    <ul class="checklist">
+      <li>PageSpeed Mobile score: ______</li>
+      <li>PageSpeed Desktop score: ______</li>
+      <li>LCP (lab): ______ seconds</li>
+      <li>FID/INP (field): ______ ms</li>
+      <li>CLS (lab): ______</li>
+      <li>FCP: ______ seconds</li>
+      <li>TTI: ______ seconds</li>
+      <li>Total Blocking Time: ______ ms</li>
+      <li>Speed Index: ______</li>
+    </ul>
+
+    <h3>SEO (Screaming Frog or similar)</h3>
+    <ul class="checklist">
+      <li>Total indexed pages (site:girlscoutshop.com): ______</li>
+      <li>Pages with title tags: ______</li>
+      <li>Pages with meta descriptions: ______</li>
+      <li>Pages with H1: ______</li>
+      <li>Total backlinks (Ahrefs/Moz): ______</li>
+      <li>Domain Authority: ______</li>
+      <li>Organic traffic (GA monthly): ______</li>
+    </ul>
+
+    <h3>Accessibility (Lighthouse)</h3>
+    <ul class="checklist">
+      <li>Lighthouse Accessibility score: ______</li>
+      <li>Total WCAG violations: ______</li>
+      <li>Critical violations: ______</li>
+      <li>Serious violations: ______</li>
+    </ul>
+
+    <h3>Analytics (GA/GTM)</h3>
+    <ul class="checklist">
+      <li>Monthly page views: ______</li>
+      <li>Monthly unique visitors: ______</li>
+      <li>Bounce rate: ______</li>
+      <li>Average session duration: ______</li>
+      <li>Conversion rate: ______</li>
+    </ul>
+  </div>
+
+  <!-- COMPARISON FRAMEWORK -->
+  <div class="section" id="comparison">
+    <h2>10. Post-Migration Comparison Framework</h2>
+    <p style="margin-bottom:16px;color:var(--color-muted)">After migration, re-run all measurements and fill in the Post-Migration column.</p>
+
+    <table>
+      <thead><tr><th>Category</th><th>Metric</th><th>Pre-Migration</th><th>Post-Migration</th><th>Pass Criteria</th></tr></thead>
+      <tbody>
+        <tr><td>Performance</td><td>PageSpeed Mobile</td><td></td><td></td><td>&ge; pre</td></tr>
+        <tr><td>Performance</td><td>PageSpeed Desktop</td><td></td><td></td><td>&ge; pre</td></tr>
+        <tr><td>Performance</td><td>LCP</td><td></td><td></td><td>&le; pre</td></tr>
+        <tr><td>Performance</td><td>CLS</td><td></td><td></td><td>&le; pre</td></tr>
+        <tr><td>Performance</td><td>Page Weight</td><td>2.56 MB</td><td></td><td>&lt; pre</td></tr>
+        <tr><td>Performance</td><td>HTTP Requests</td><td>127</td><td></td><td>&lt; pre</td></tr>
+        <tr><td>SEO</td><td>Indexed Pages</td><td></td><td></td><td>&ge; pre</td></tr>
+        <tr><td>SEO</td><td>Organic Traffic</td><td></td><td></td><td>&ge; pre</td></tr>
+        <tr><td>SEO</td><td>H1 Present</td><td>No</td><td></td><td>Yes</td></tr>
+        <tr><td>SEO</td><td>Structured Data</td><td>None</td><td></td><td>Added</td></tr>
+        <tr><td>A11y</td><td>Lighthouse Score</td><td></td><td></td><td>&ge; pre</td></tr>
+        <tr><td>A11y</td><td>ARIA Landmarks</td><td>Partial</td><td></td><td>Complete</td></tr>
+        <tr><td>A11y</td><td>Image Alt Text</td><td>19.8%</td><td></td><td>&gt; 95%</td></tr>
+        <tr><td>Content</td><td>Pages Migrated</td><td></td><td></td><td>100%</td></tr>
+        <tr><td>Analytics</td><td>Events Firing</td><td></td><td></td><td>100% match</td></tr>
+        <tr><td>Visual</td><td>Design Fidelity</td><td></td><td></td><td>Approved</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section">
+    <h2>11. Recommended Next Steps</h2>
+    <ol style="padding-left:20px;line-height:2">
+      <li><strong>Run PageSpeed Insights</strong> on homepage + top 5 traffic pages</li>
+      <li><strong>Run Lighthouse</strong> full audit and save reports</li>
+      <li><strong>Crawl site</strong> with Screaming Frog for full URL inventory</li>
+      <li><strong>Export analytics</strong> data for the past 12 months</li>
+      <li><strong>Document redirect map</strong> for all current URLs</li>
+      <li><strong>Define e-commerce integration strategy</strong> (headless vs hybrid)</li>
+      <li><strong>Prioritize page templates</strong> for migration</li>
+      <li><strong>Begin migration</strong> with prioritized URL list</li>
+    </ol>
+  </div>
+
+</div>
+
+<div class="footer-bar">
+  Pre-Migration Baseline Report &mdash; girlscoutshop.com &rarr; AEM Edge Delivery Services &mdash; Generated March 30, 2026
+</div>
+
+</body>
+</html>
