@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Baseline Report | girlscoutshop.com → AEM EDS</title>
+<style>
+:root{--primary:#003366;--accent:#00AE58;--bg:#f4f6f9;--card:#fff;--text:#1a1a2e;--muted:#6c757d;--border:#dee2e6;--red:#dc3545;--orange:#fd7e14;--green:#28a745;--blue:#0d6efd;--yellow:#ffc107}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.header{background:linear-gradient(135deg,var(--primary),#004e9a);color:#fff;padding:48px 0;text-align:center}
+.header h1{font-size:2.2rem;margin-bottom:4px}
+.header .sub{opacity:.85;font-size:1.1rem}
+.header .meta{margin-top:14px;font-size:.85rem;opacity:.65}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+.toolbar{background:#fff;border-bottom:1px solid var(--border);padding:10px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 4px rgba(0,0,0,.05)}
+.toolbar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.toolbar a{color:var(--primary);text-decoration:none;font-size:.8rem;font-weight:500;white-space:nowrap}
+.toolbar a:hover{text-decoration:underline}
+.btn{background:var(--primary);color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:.85rem;font-weight:500}
+.btn:hover{background:#004e9a}
+.section{background:var(--card);border-radius:10px;margin:24px 0;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.section h2{color:var(--primary);font-size:1.4rem;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--accent)}
+.section h3{font-size:1.1rem;margin:24px 0 12px;color:var(--text)}
+table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:.87rem}
+th{background:#f1f3f5;text-align:left;padding:10px 14px;font-weight:600;color:var(--primary);border-bottom:2px solid var(--border)}
+td{padding:8px 14px;border-bottom:1px solid #eee;vertical-align:top}
+tr:hover td{background:#f8f9fa}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75rem;font-weight:600}
+.b-red{background:#fde8e8;color:var(--red)}.b-orange{background:#fff3e0;color:#e65100}
+.b-green{background:#e8f5e9;color:var(--green)}.b-blue{background:#e3f2fd;color:var(--blue)}
+.b-yellow{background:#fff8e1;color:#f57f17}
+.callout{padding:14px 18px;border-radius:8px;margin:16px 0;font-size:.9rem}
+.callout-info{background:#e3f2fd;border-left:4px solid var(--blue)}
+.callout-warn{background:#fff3e0;border-left:4px solid var(--orange)}
+.callout-good{background:#e8f5e9;border-left:4px solid var(--green)}
+.callout-bad{background:#fde8e8;border-left:4px solid var(--red)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:16px 0}
+.stat{background:#f8f9fa;border-radius:8px;padding:20px;text-align:center}
+.stat .val{font-size:2rem;font-weight:700;color:var(--primary)}
+.stat .lbl{font-size:.8rem;color:var(--muted);margin-top:4px}
+.comparison-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:16px 0}
+.comparison-box{border:2px solid var(--border);border-radius:10px;padding:20px;text-align:center}
+.comparison-box h4{font-size:.9rem;color:var(--muted);margin-bottom:12px}
+.comparison-box .big{font-size:2.8rem;font-weight:800}
+.current{color:var(--red)}.target{color:var(--green)}
+.bar-chart{margin:8px 0}
+.bar-row{display:flex;align-items:center;margin:6px 0;font-size:.82rem}
+.bar-row .label{width:120px;text-align:right;padding-right:10px;color:var(--muted);flex-shrink:0}
+.bar-row .bar{height:24px;border-radius:4px;display:flex;align-items:center;padding:0 8px;color:#fff;font-weight:600;font-size:.75rem;min-width:40px}
+.page-card{border:1px solid var(--border);border-radius:8px;margin:16px 0;overflow:hidden}
+.page-card-header{background:#f1f3f5;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+.page-card-header h4{margin:0;font-size:1rem}
+.page-card-body{padding:20px}
+.footer-bar{text-align:center;padding:32px;color:var(--muted);font-size:.8rem}
+@media print{.toolbar{display:none}.section{break-inside:avoid;box-shadow:none}body{background:#fff}}
+@media(max-width:768px){.header h1{font-size:1.4rem}.section{padding:20px}.comparison-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+<div class="container">
+<h1>Page Performance Baseline Report</h1>
+<div class="sub">girlscoutshop.com &rarr; AEM Edge Delivery Services (DA)</div>
+<div class="meta">Report Date: March 31, 2026 &nbsp;|&nbsp; Prepared for: Client Approval &nbsp;|&nbsp; Pages Analyzed: 5</div>
+</div>
+</div>
+
+<div class="toolbar">
+<div class="container">
+<div style="display:flex;gap:16px;flex-wrap:wrap">
+<a href="#executive">Executive Summary</a>
+<a href="#pages">Page-by-Page</a>
+<a href="#comparison">Comparison</a>
+<a href="#opportunities">Opportunities</a>
+<a href="#targets">EDS Targets</a>
+<a href="#next">Next Steps</a>
+</div>
+<button class="btn" onclick="window.print()">Print / Save PDF</button>
+</div>
+</div>
+
+<div class="container">
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="section" id="executive">
+<h2>Executive Summary</h2>
+<p style="margin-bottom:20px">This report establishes a performance baseline for <strong>girlscoutshop.com</strong> across 5 key page templates before migration to <strong>AEM Edge Delivery Services with Document Authoring (DA)</strong>. These metrics will be used for comparison after migration to ensure performance parity or improvement.</p>
+
+<div class="stats">
+<div class="stat"><div class="val">5</div><div class="lbl">Pages Analyzed</div></div>
+<div class="stat"><div class="val">1,599</div><div class="lbl">Avg DOM Elements</div></div>
+<div class="stat"><div class="val">642 ms</div><div class="lbl">Avg Page Load</div></div>
+<div class="stat"><div class="val">454 KB</div><div class="lbl">Avg Transfer Size</div></div>
+</div>
+
+<h3>Pages Analyzed</h3>
+<table>
+<thead><tr><th>Page Type</th><th>URL</th><th>Title</th></tr></thead>
+<tbody>
+<tr><td><span class="badge b-blue">Homepage</span></td><td>https://www.girlscoutshop.com/</td><td>Girl Scout Shop | Girl Scout Uniforms, Program, Outdoor Gear and More!</td></tr>
+<tr><td><span class="badge b-green">PLP</span></td><td>https://www.girlscoutshop.com/adults/troop-year-plans/brownie-year-2</td><td>Brownie Troop Year Plan - Year 2</td></tr>
+<tr><td><span class="badge b-orange">PDP</span></td><td>https://www.girlscoutshop.com/official-brownie-uniform-sash</td><td>Official Brownie Uniform Sash</td></tr>
+<tr><td><span class="badge b-yellow">Cart</span></td><td>https://www.girlscoutshop.com/cart</td><td>Shopping Cart</td></tr>
+<tr><td><span class="badge b-red">Checkout</span></td><td>https://www.girlscoutshop.com/sca-dev-2020-1/checkout.ssp#login-register</td><td>Login or Register</td></tr>
+</tbody>
+</table>
+
+<div class="callout callout-info"><strong>Platform:</strong> Current site runs on <strong>NetSuite SuiteCommerce Advanced (SCA)</strong> with jQuery, Backbone.js, and RequireJS. Migration target is <strong>AEM Edge Delivery Services</strong> with Document Authoring using vanilla JavaScript and optimized CSS delivery.</div>
+</div>
+
+<!-- PAGE-BY-PAGE PERFORMANCE -->
+<div class="section" id="pages">
+<h2>Page-by-Page Performance Metrics</h2>
+
+<!-- HOMEPAGE -->
+<div class="page-card">
+<div class="page-card-header"><h4>Homepage</h4><span class="badge b-blue">Home</span></div>
+<div class="page-card-body">
+<div class="stats">
+<div class="stat"><div class="val">140 ms</div><div class="lbl">First Contentful Paint</div></div>
+<div class="stat"><div class="val">654 ms</div><div class="lbl">Full Page Load</div></div>
+<div class="stat"><div class="val">1,799</div><div class="lbl">DOM Elements</div></div>
+<div class="stat"><div class="val">72</div><div class="lbl">Requests</div></div>
+</div>
+<table>
+<thead><tr><th>Metric</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>TTFB (Time to First Byte)</td><td>~20 ms (cached)</td></tr>
+<tr><td>DOM Interactive</td><td>559 ms</td></tr>
+<tr><td>DOM Content Loaded</td><td>565 ms</td></tr>
+<tr><td>DOM Complete / Load Event</td><td>654 ms</td></tr>
+<tr><td>First Contentful Paint (FCP)</td><td>140 ms</td></tr>
+<tr><td>Images</td><td>90 total (38 loaded on navigation)</td></tr>
+<tr><td>Scripts</td><td>36 script tags, 15 external</td></tr>
+<tr><td>HTML Document Size</td><td>164 KB (decoded)</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- PLP -->
+<div class="page-card">
+<div class="page-card-header"><h4>PLP - Brownie Troop Year Plan</h4><span class="badge b-green">PLP</span></div>
+<div class="page-card-body">
+<div class="stats">
+<div class="stat"><div class="val">596 ms</div><div class="lbl">First Contentful Paint</div></div>
+<div class="stat"><div class="val">754 ms</div><div class="lbl">Full Page Load</div></div>
+<div class="stat"><div class="val">1,343</div><div class="lbl">DOM Elements</div></div>
+<div class="stat"><div class="val">1,114 KB</div><div class="lbl">Transfer Size</div></div>
+</div>
+<table>
+<thead><tr><th>Metric</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>TTFB</td><td>119 ms</td></tr>
+<tr><td>DOM Interactive</td><td>222 ms</td></tr>
+<tr><td>DOM Content Loaded</td><td>231 ms</td></tr>
+<tr><td>DOM Complete / Load Event</td><td>754 ms</td></tr>
+<tr><td>First Contentful Paint</td><td>596 ms</td></tr>
+<tr><td>Images</td><td>33 total (19 loaded), ~1,069 KB</td></tr>
+<tr><td>CSS</td><td>1 stylesheet, 42 KB</td></tr>
+<tr><td>HTML Document Size</td><td>114 KB (decoded)</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- PDP -->
+<div class="page-card">
+<div class="page-card-header"><h4>PDP - Official Brownie Uniform Sash</h4><span class="badge b-orange">PDP</span></div>
+<div class="page-card-body">
+<div class="stats">
+<div class="stat"><div class="val">596 ms</div><div class="lbl">First Contentful Paint</div></div>
+<div class="stat"><div class="val">455 ms</div><div class="lbl">Full Page Load</div></div>
+<div class="stat"><div class="val">2,717</div><div class="lbl">DOM Elements</div></div>
+<div class="stat"><div class="val">781 KB</div><div class="lbl">Transfer Size</div></div>
+</div>
+<table>
+<thead><tr><th>Metric</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>TTFB</td><td>165 ms</td></tr>
+<tr><td>DOM Interactive</td><td>212 ms</td></tr>
+<tr><td>DOM Content Loaded</td><td>216 ms</td></tr>
+<tr><td>DOM Complete / Load Event</td><td>455 ms</td></tr>
+<tr><td>First Contentful Paint</td><td>596 ms</td></tr>
+<tr><td>Images</td><td>45 total (26 loaded), ~715 KB</td></tr>
+<tr><td>XHR Requests</td><td>10 API calls, 20 KB</td></tr>
+<tr><td>HTML Document Size</td><td>194 KB (decoded) &mdash; <strong>Heaviest page</strong></td></tr>
+</tbody>
+</table>
+<div class="callout callout-warn"><strong>Note:</strong> PDP has the highest DOM complexity (2,717 elements) due to product variants, reviews, recommendations, and cross-sell widgets. EDS migration should significantly simplify this.</div>
+</div>
+</div>
+
+<!-- CART -->
+<div class="page-card">
+<div class="page-card-header"><h4>Cart</h4><span class="badge b-yellow">Cart</span></div>
+<div class="page-card-body">
+<div class="stats">
+<div class="stat"><div class="val">700 ms</div><div class="lbl">First Contentful Paint</div></div>
+<div class="stat"><div class="val">262 ms</div><div class="lbl">Full Page Load</div></div>
+<div class="stat"><div class="val">1,025</div><div class="lbl">DOM Elements</div></div>
+<div class="stat"><div class="val">3 KB</div><div class="lbl">Transfer Size</div></div>
+</div>
+<table>
+<thead><tr><th>Metric</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>TTFB</td><td>206 ms</td></tr>
+<tr><td>DOM Interactive</td><td>257 ms</td></tr>
+<tr><td>DOM Content Loaded</td><td>262 ms</td></tr>
+<tr><td>DOM Complete / Load Event</td><td>262 ms</td></tr>
+<tr><td>First Contentful Paint</td><td>700 ms</td></tr>
+<tr><td>Resources</td><td>25 total requests</td></tr>
+<tr><td>HTML Document Size</td><td>89 KB (decoded)</td></tr>
+</tbody>
+</table>
+<div class="callout callout-info"><strong>Note:</strong> Cart page is lightweight when empty. Performance with items will vary based on cart contents and API responses.</div>
+</div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="page-card">
+<div class="page-card-header"><h4>Checkout (Login/Register)</h4><span class="badge b-red">Checkout</span></div>
+<div class="page-card-body">
+<div class="stats">
+<div class="stat"><div class="val">1,240 ms</div><div class="lbl">First Contentful Paint</div></div>
+<div class="stat"><div class="val">1,058 ms</div><div class="lbl">Full Page Load</div></div>
+<div class="stat"><div class="val">1,111</div><div class="lbl">DOM Elements</div></div>
+<div class="stat"><div class="val">365 KB</div><div class="lbl">Transfer Size</div></div>
+</div>
+<table>
+<thead><tr><th>Metric</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>TTFB</td><td>292 ms &mdash; <strong>Slowest</strong></td></tr>
+<tr><td>DOM Interactive</td><td>1,054 ms</td></tr>
+<tr><td>DOM Content Loaded</td><td>1,058 ms</td></tr>
+<tr><td>DOM Complete / Load Event</td><td>1,058 ms</td></tr>
+<tr><td>First Contentful Paint</td><td>1,240 ms &mdash; <strong>Slowest FCP</strong></td></tr>
+<tr><td>Scripts</td><td>16 external scripts, 365 KB (mostly JS framework)</td></tr>
+<tr><td>HTML Document Size</td><td>7 KB (decoded) &mdash; SPA shell, JS-rendered</td></tr>
+</tbody>
+</table>
+<div class="callout callout-bad"><strong>Critical:</strong> Checkout is the slowest page with 1.24s FCP and 292ms TTFB. The page is a JavaScript SPA (only 7KB HTML shell) that renders entirely client-side. This is the biggest opportunity for improvement.</div>
+</div>
+</div>
+</div>
+
+<!-- CROSS-PAGE COMPARISON -->
+<div class="section" id="comparison">
+<h2>Cross-Page Performance Comparison</h2>
+
+<h3>Key Metrics Comparison</h3>
+<table>
+<thead><tr><th>Metric</th><th>Homepage</th><th>PLP</th><th>PDP</th><th>Cart</th><th>Checkout</th></tr></thead>
+<tbody>
+<tr><td><strong>TTFB</strong></td><td>~20 ms</td><td>119 ms</td><td>165 ms</td><td>206 ms</td><td style="color:var(--red);font-weight:700">292 ms</td></tr>
+<tr><td><strong>FCP</strong></td><td style="color:var(--green);font-weight:700">140 ms</td><td>596 ms</td><td>596 ms</td><td>700 ms</td><td style="color:var(--red);font-weight:700">1,240 ms</td></tr>
+<tr><td><strong>DOM Interactive</strong></td><td>559 ms</td><td>222 ms</td><td>212 ms</td><td>257 ms</td><td style="color:var(--red);font-weight:700">1,054 ms</td></tr>
+<tr><td><strong>Page Load</strong></td><td>654 ms</td><td>754 ms</td><td>455 ms</td><td style="color:var(--green);font-weight:700">262 ms</td><td style="color:var(--red);font-weight:700">1,058 ms</td></tr>
+<tr><td><strong>DOM Elements</strong></td><td>1,799</td><td>1,343</td><td style="color:var(--red);font-weight:700">2,717</td><td style="color:var(--green);font-weight:700">1,025</td><td>1,111</td></tr>
+<tr><td><strong>Total Requests</strong></td><td>72</td><td>43</td><td>54</td><td style="color:var(--green);font-weight:700">25</td><td>34</td></tr>
+<tr><td><strong>Transfer Size</strong></td><td>8 KB*</td><td>1,114 KB</td><td>781 KB</td><td style="color:var(--green);font-weight:700">3 KB</td><td>365 KB</td></tr>
+<tr><td><strong>Images</strong></td><td>90</td><td>33</td><td>45</td><td>3</td><td>3</td></tr>
+<tr><td><strong>Scripts</strong></td><td>36</td><td>29</td><td>29</td><td>29</td><td>29</td></tr>
+</tbody>
+</table>
+<p style="font-size:.8rem;color:var(--muted)">* Homepage transfer size reads low due to aggressive caching on repeat visit; initial visit ~2.5 MB per earlier analysis.</p>
+
+<h3>Visual Performance Summary</h3>
+<div class="bar-chart">
+<p style="font-size:.85rem;color:var(--muted);margin-bottom:10px"><strong>First Contentful Paint (FCP) by Page</strong> &mdash; lower is better</p>
+<div class="bar-row"><div class="label">Homepage</div><div class="bar" style="width:11%;background:var(--green)">140ms</div></div>
+<div class="bar-row"><div class="label">PLP</div><div class="bar" style="width:48%;background:var(--orange)">596ms</div></div>
+<div class="bar-row"><div class="label">PDP</div><div class="bar" style="width:48%;background:var(--orange)">596ms</div></div>
+<div class="bar-row"><div class="label">Cart</div><div class="bar" style="width:56%;background:var(--orange)">700ms</div></div>
+<div class="bar-row"><div class="label">Checkout</div><div class="bar" style="width:100%;background:var(--red)">1,240ms</div></div>
+</div>
+<div class="bar-chart" style="margin-top:24px">
+<p style="font-size:.85rem;color:var(--muted);margin-bottom:10px"><strong>DOM Elements by Page</strong> &mdash; lower is better</p>
+<div class="bar-row"><div class="label">Homepage</div><div class="bar" style="width:66%;background:#4e79a7">1,799</div></div>
+<div class="bar-row"><div class="label">PLP</div><div class="bar" style="width:49%;background:#4e79a7">1,343</div></div>
+<div class="bar-row"><div class="label">PDP</div><div class="bar" style="width:100%;background:var(--red)">2,717</div></div>
+<div class="bar-row"><div class="label">Cart</div><div class="bar" style="width:38%;background:var(--green)">1,025</div></div>
+<div class="bar-row"><div class="label">Checkout</div><div class="bar" style="width:41%;background:#4e79a7">1,111</div></div>
+</div>
+</div>
+
+<!-- EDS IMPROVEMENT OPPORTUNITIES -->
+<div class="section" id="opportunities">
+<h2>Key Improvement Opportunities with EDS</h2>
+
+<div class="comparison-row">
+<div class="comparison-box">
+<h4>Current Average Page Load</h4>
+<div class="big current">637 ms</div>
+<p style="font-size:.8rem;color:var(--muted);margin-top:8px">Across 5 page templates</p>
+</div>
+<div class="comparison-box">
+<h4>EDS Target Page Load</h4>
+<div class="big target">&lt; 300 ms</div>
+<p style="font-size:.8rem;color:var(--muted);margin-top:8px">50%+ improvement expected</p>
+</div>
+</div>
+
+<h3>What EDS Improves</h3>
+<table>
+<thead><tr><th>Area</th><th>Current Issue</th><th>EDS Solution</th><th>Expected Impact</th></tr></thead>
+<tbody>
+<tr><td><strong>JavaScript Framework</strong></td><td>jQuery + Backbone.js + RequireJS (94-365 KB JS)</td><td>Zero-framework vanilla JS, auto code splitting per block</td><td><span class="badge b-green">70-90% JS reduction</span></td></tr>
+<tr><td><strong>DOM Complexity</strong></td><td>Avg 1,599 elements, max 2,717 (PDP)</td><td>Semantic HTML, minimal DOM from content-driven approach</td><td><span class="badge b-green">50-60% DOM reduction</span></td></tr>
+<tr><td><strong>Image Delivery</strong></td><td>90 images on homepage, 1.9 MB unoptimized</td><td>Automatic WebP/AVIF, responsive srcset, lazy loading</td><td><span class="badge b-green">60-80% image size reduction</span></td></tr>
+<tr><td><strong>CSS Delivery</strong></td><td>2 global stylesheets + inline</td><td>Critical CSS inlined, per-block CSS loaded on demand</td><td><span class="badge b-green">Eliminates render-blocking CSS</span></td></tr>
+<tr><td><strong>CDN/Edge</strong></td><td>NetSuite hosting, single origin</td><td>AEM Edge CDN with global PoPs, pre-rendered HTML</td><td><span class="badge b-green">50-80% TTFB improvement</span></td></tr>
+<tr><td><strong>Checkout SPA</strong></td><td>7 KB HTML shell, 365 KB JS client-rendered, 1.24s FCP</td><td>Server-rendered HTML with progressive enhancement</td><td><span class="badge b-green">60-70% FCP improvement</span></td></tr>
+<tr><td><strong>Font Loading</strong></td><td>4 font files (198 KB), broken WOFF headers detected</td><td>Optimized font-display: swap, subset fonts</td><td><span class="badge b-green">Eliminate FOIT, fix broken fonts</span></td></tr>
+<tr><td><strong>Third-Party Scripts</strong></td><td>7 analytics/tracking scripts loaded eagerly</td><td>All moved to delayed.js (loaded after user interaction)</td><td><span class="badge b-green">Unblocks main thread</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- EDS TARGET METRICS -->
+<div class="section" id="targets">
+<h2>Performance Targets: Current vs. EDS</h2>
+
+<table>
+<thead><tr><th>Metric</th><th>Current (Avg)</th><th>Current (Worst)</th><th>EDS Target</th><th>Industry Good</th></tr></thead>
+<tbody>
+<tr><td><strong>PageSpeed Score (Mobile)</strong></td><td colspan="2" style="text-align:center;color:var(--muted)">To be measured via PageSpeed Insights</td><td style="color:var(--green);font-weight:700">95-100</td><td>&ge; 90</td></tr>
+<tr><td><strong>PageSpeed Score (Desktop)</strong></td><td colspan="2" style="text-align:center;color:var(--muted)">To be measured via PageSpeed Insights</td><td style="color:var(--green);font-weight:700">100</td><td>&ge; 90</td></tr>
+<tr><td><strong>TTFB</strong></td><td>160 ms</td><td>292 ms (Checkout)</td><td style="color:var(--green);font-weight:700">&lt; 100 ms</td><td>&lt; 200 ms</td></tr>
+<tr><td><strong>FCP</strong></td><td>654 ms</td><td>1,240 ms (Checkout)</td><td style="color:var(--green);font-weight:700">&lt; 500 ms</td><td>&lt; 1.8s</td></tr>
+<tr><td><strong>LCP</strong></td><td colspan="2" style="text-align:center;color:var(--muted)">To be measured</td><td style="color:var(--green);font-weight:700">&lt; 1.5s</td><td>&lt; 2.5s</td></tr>
+<tr><td><strong>CLS</strong></td><td colspan="2" style="text-align:center;color:var(--muted)">To be measured</td><td style="color:var(--green);font-weight:700">&lt; 0.05</td><td>&lt; 0.1</td></tr>
+<tr><td><strong>INP</strong></td><td colspan="2" style="text-align:center;color:var(--muted)">To be measured</td><td style="color:var(--green);font-weight:700">&lt; 100ms</td><td>&lt; 200ms</td></tr>
+<tr><td><strong>DOM Elements</strong></td><td>1,599</td><td>2,717 (PDP)</td><td style="color:var(--green);font-weight:700">&lt; 800</td><td>&lt; 1,500</td></tr>
+<tr><td><strong>Page Weight</strong></td><td>~2.5 MB (initial homepage)</td><td>~2.5 MB</td><td style="color:var(--green);font-weight:700">&lt; 500 KB</td><td>&lt; 1 MB</td></tr>
+<tr><td><strong>HTTP Requests</strong></td><td>46</td><td>72 (Homepage)</td><td style="color:var(--green);font-weight:700">&lt; 25</td><td>&lt; 50</td></tr>
+</tbody>
+</table>
+
+<div class="callout callout-good"><strong>Expected Outcome:</strong> AEM Edge Delivery Services consistently achieves <strong>PageSpeed scores of 100</strong> on both mobile and desktop. The architecture eliminates render-blocking resources, minimizes JavaScript, and serves pre-rendered HTML from edge locations globally.</div>
+</div>
+
+<!-- POST-MIGRATION COMPARISON -->
+<div class="section">
+<h2>Post-Migration Comparison Template</h2>
+<p style="margin-bottom:16px;color:var(--muted)">After migration, re-run performance tests and fill in the Post-Migration column.</p>
+
+<table>
+<thead><tr><th>Page</th><th>Metric</th><th>Pre-Migration</th><th>Post-Migration</th><th>Change</th><th>Pass?</th></tr></thead>
+<tbody>
+<tr><td rowspan="4" style="font-weight:700">Homepage</td><td>FCP</td><td>140 ms</td><td></td><td></td><td></td></tr>
+<tr><td>Page Load</td><td>654 ms</td><td></td><td></td><td></td></tr>
+<tr><td>DOM Elements</td><td>1,799</td><td></td><td></td><td></td></tr>
+<tr><td>Requests</td><td>72</td><td></td><td></td><td></td></tr>
+<tr><td rowspan="4" style="font-weight:700">PLP</td><td>FCP</td><td>596 ms</td><td></td><td></td><td></td></tr>
+<tr><td>Page Load</td><td>754 ms</td><td></td><td></td><td></td></tr>
+<tr><td>DOM Elements</td><td>1,343</td><td></td><td></td><td></td></tr>
+<tr><td>Transfer Size</td><td>1,114 KB</td><td></td><td></td><td></td></tr>
+<tr><td rowspan="4" style="font-weight:700">PDP</td><td>FCP</td><td>596 ms</td><td></td><td></td><td></td></tr>
+<tr><td>Page Load</td><td>455 ms</td><td></td><td></td><td></td></tr>
+<tr><td>DOM Elements</td><td>2,717</td><td></td><td></td><td></td></tr>
+<tr><td>Transfer Size</td><td>781 KB</td><td></td><td></td><td></td></tr>
+<tr><td rowspan="3" style="font-weight:700">Cart</td><td>FCP</td><td>700 ms</td><td></td><td></td><td></td></tr>
+<tr><td>Page Load</td><td>262 ms</td><td></td><td></td><td></td></tr>
+<tr><td>DOM Elements</td><td>1,025</td><td></td><td></td><td></td></tr>
+<tr><td rowspan="4" style="font-weight:700">Checkout</td><td>FCP</td><td>1,240 ms</td><td></td><td></td><td></td></tr>
+<tr><td>TTFB</td><td>292 ms</td><td></td><td></td><td></td></tr>
+<tr><td>Page Load</td><td>1,058 ms</td><td></td><td></td><td></td></tr>
+<tr><td>DOM Elements</td><td>1,111</td><td></td><td></td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- NEXT STEPS -->
+<div class="section" id="next">
+<h2>Recommended Next Steps</h2>
+<ol style="padding-left:20px;line-height:2.2">
+<li><strong>Run PageSpeed Insights</strong> on all 5 URLs to capture Lighthouse scores (mobile + desktop) and Core Web Vitals field data</li>
+<li><strong>Approve this baseline</strong> &mdash; Confirm these metrics as the comparison benchmark</li>
+<li><strong>Define e-commerce integration strategy</strong> for Cart and Checkout pages (headless API vs. hybrid approach)</li>
+<li><strong>Begin migration</strong> &mdash; Homepage and PLP/PDP templates first, Cart/Checkout in Phase 2</li>
+<li><strong>Run post-migration performance tests</strong> on same 5 URLs and compare against this baseline</li>
+<li><strong>Target PageSpeed 100</strong> on all migrated content pages (EDS standard)</li>
+</ol>
+
+<div class="callout callout-info" style="margin-top:20px">
+<strong>Migration Approach:</strong> We recommend a <strong>phased migration</strong>:<br>
+<strong>Phase 1:</strong> Homepage + Content Pages (PLP) &rarr; Full EDS with DA<br>
+<strong>Phase 2:</strong> Product Detail Pages (PDP) &rarr; EDS with commerce API integration<br>
+<strong>Phase 3:</strong> Cart &amp; Checkout &rarr; Headless commerce integration or hybrid approach
+</div>
+</div>
+
+</div>
+
+<div class="footer-bar">
+Performance Baseline Report &mdash; girlscoutshop.com &rarr; AEM Edge Delivery Services &mdash; March 31, 2026<br>
+Prepared for client approval prior to migration
+</div>
+
+</body>
+</html>
