@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Baseline Report | thermofisher.com Homepage</title>
+<style>
+:root{--primary:#0c2340;--accent:#e4002b;--bg:#f4f6f9;--card:#fff;--text:#1a1a2e;--muted:#6c757d;--border:#dee2e6;--red:#dc3545;--orange:#fd7e14;--green:#28a745;--blue:#0d6efd;--yellow:#ffc107}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.header{background:linear-gradient(135deg,var(--primary),#1a3a5c);color:#fff;padding:48px 0;text-align:center}
+.header h1{font-size:2.2rem;margin-bottom:4px}
+.header .sub{opacity:.85;font-size:1.1rem}
+.header .meta{margin-top:14px;font-size:.85rem;opacity:.65}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+.toolbar{background:#fff;border-bottom:1px solid var(--border);padding:10px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 4px rgba(0,0,0,.05)}
+.toolbar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.toolbar a{color:var(--primary);text-decoration:none;font-size:.8rem;font-weight:500;white-space:nowrap}
+.toolbar a:hover{text-decoration:underline}
+.btn{background:var(--primary);color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:.85rem;font-weight:500}
+.btn:hover{background:#1a3a5c}
+.section{background:var(--card);border-radius:10px;margin:24px 0;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.section h2{color:var(--primary);font-size:1.4rem;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--accent)}
+.section h3{font-size:1.1rem;margin:24px 0 12px;color:var(--text)}
+table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:.87rem}
+th{background:#f1f3f5;text-align:left;padding:10px 14px;font-weight:600;color:var(--primary);border-bottom:2px solid var(--border)}
+td{padding:8px 14px;border-bottom:1px solid #eee;vertical-align:top}
+tr:hover td{background:#f8f9fa}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75rem;font-weight:600}
+.b-red{background:#fde8e8;color:var(--red)}.b-orange{background:#fff3e0;color:#e65100}
+.b-green{background:#e8f5e9;color:var(--green)}.b-blue{background:#e3f2fd;color:var(--blue)}
+.b-yellow{background:#fff8e1;color:#f57f17}
+.callout{padding:14px 18px;border-radius:8px;margin:16px 0;font-size:.9rem}
+.callout-info{background:#e3f2fd;border-left:4px solid var(--blue)}
+.callout-warn{background:#fff3e0;border-left:4px solid var(--orange)}
+.callout-good{background:#e8f5e9;border-left:4px solid var(--green)}
+.callout-bad{background:#fde8e8;border-left:4px solid var(--red)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:16px 0}
+.stat{background:#f8f9fa;border-radius:8px;padding:20px;text-align:center}
+.stat .val{font-size:2rem;font-weight:700;color:var(--primary)}
+.stat .lbl{font-size:.8rem;color:var(--muted);margin-top:4px}
+.comparison-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:16px 0}
+.comparison-box{border:2px solid var(--border);border-radius:10px;padding:20px;text-align:center}
+.comparison-box h4{font-size:.9rem;color:var(--muted);margin-bottom:12px}
+.comparison-box .big{font-size:2.8rem;font-weight:800}
+.current{color:var(--red)}.target{color:var(--green)}
+.bar-chart{margin:8px 0}
+.bar-row{display:flex;align-items:center;margin:6px 0;font-size:.82rem}
+.bar-row .label{width:120px;text-align:right;padding-right:10px;color:var(--muted);flex-shrink:0}
+.bar-row .bar{height:24px;border-radius:4px;display:flex;align-items:center;padding:0 8px;color:#fff;font-weight:600;font-size:.75rem;min-width:40px}
+.lh-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:16px 0}
+.lh-card{border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.lh-card h4{font-size:.85rem;color:var(--muted);margin-bottom:12px}
+.lh-gauge{width:64px;height:64px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;border:3px solid;margin:0 auto 8px}
+.g-red{border-color:var(--red);color:var(--red);background:#fde8e822}
+.g-orange{border-color:var(--orange);color:#e65100;background:#fff3e022}
+.g-green{border-color:var(--green);color:var(--green);background:#e8f5e922}
+.lh-tab{padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:500;cursor:pointer;border:1px solid var(--border)}
+.lh-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.lh-panel{display:none}.lh-panel.active{display:block}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:16px 0}
+.tech-card{border:1px solid var(--border);border-radius:10px;padding:20px}
+.tech-card h4{color:var(--primary);margin-bottom:8px;font-size:.95rem}
+.tech-card ul{list-style:none;padding:0}
+.tech-card ul li{padding:4px 0;font-size:.85rem;border-bottom:1px solid #f0f0f0}
+.tech-card ul li:last-child{border:none}
+.kpi-row{display:grid;grid-template-columns:2fr 1fr 2fr;gap:0;margin:0}
+.kpi-row.kpi-header{background:#f1f3f5;font-weight:600;color:var(--primary);border-bottom:2px solid var(--border)}
+.kpi-row>div{padding:10px 14px;border-bottom:1px solid #eee;font-size:.87rem}
+footer{text-align:center;padding:32px;color:var(--muted);font-size:.8rem}
+@media print{.toolbar{display:none}.section{break-inside:avoid}}
+@media(max-width:768px){.lh-grid{grid-template-columns:1fr 1fr}.comparison-row{grid-template-columns:1fr}.tech-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+<div class="container">
+<h1>Pre-Migration Performance Baseline</h1>
+<div class="sub">thermofisher.com/us/en/home.html</div>
+<div class="meta">Report Date: April 1, 2026 &bull; Source: Google PageSpeed Insights &bull; Chrome UX Report (CrUX)</div>
+</div>
+</div>
+
+<div class="toolbar">
+<div class="container">
+<div>
+<a href="#executive">Executive Summary</a> &nbsp;|&nbsp;
+<a href="#lighthouse">Lighthouse Scores</a> &nbsp;|&nbsp;
+<a href="#field">Field Data (CrUX)</a> &nbsp;|&nbsp;
+<a href="#analytics">Analytics Stack</a> &nbsp;|&nbsp;
+<a href="#kpi-mapping">KPI → Adobe Tool</a> &nbsp;|&nbsp;
+<a href="#opportunities">Opportunities</a> &nbsp;|&nbsp;
+<a href="#disclaimer">Disclaimer</a>
+</div>
+<button class="btn" onclick="window.print()">Export PDF</button>
+</div>
+</div>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="container">
+<div class="section" id="executive">
+<h2>Executive Summary</h2>
+<p>This report captures the pre-migration performance baseline for the ThermoFisher homepage (<strong>thermofisher.com/us/en/home.html</strong>). Establishing this baseline before any platform migration is critical — it provides a measurable reference point to quantify improvements, identify regressions, and demonstrate ROI to stakeholders. These metrics represent the current state of the site as experienced by real users and synthetic testing tools, serving as the benchmark against which all post-migration performance will be measured.</p>
+
+<div class="stats">
+<div class="stat"><div class="val" style="color:var(--orange)">58</div><div class="lbl">Mobile Performance</div></div>
+<div class="stat"><div class="val" style="color:var(--orange)">87</div><div class="lbl">Desktop Performance</div></div>
+<div class="stat"><div class="val" style="color:var(--orange)">84</div><div class="lbl">Accessibility</div></div>
+<div class="stat"><div class="val" style="color:var(--green)">96</div><div class="lbl">Best Practices</div></div>
+<div class="stat"><div class="val" style="color:var(--orange)">85</div><div class="lbl">SEO</div></div>
+</div>
+
+<div class="comparison-row">
+<div class="comparison-box">
+<h4>Mobile Performance</h4>
+<div class="big current">58</div>
+<p style="font-size:.8rem;color:var(--muted);margin-top:8px">Needs Improvement (50-89)</p>
+</div>
+<div class="comparison-box">
+<h4>Desktop Performance</h4>
+<div class="big" style="color:var(--orange)">87</div>
+<p style="font-size:.8rem;color:var(--muted);margin-top:8px">Needs Improvement (50-89)</p>
+</div>
+</div>
+
+<div class="callout callout-warn">
+<strong>Core Web Vitals Assessment: Failed</strong> — CrUX field data shows the site fails the Core Web Vitals assessment on mobile. LCP (2.7s) exceeds the 2.5s "Good" threshold. This directly impacts search ranking.
+</div>
+</div>
+
+<!-- LIGHTHOUSE SCORES -->
+<div class="section" id="lighthouse">
+<h2>Lighthouse Lab Data</h2>
+<p>Synthetic performance audit captured via Google PageSpeed Insights (Lighthouse v13.0.1) on April 1, 2026.</p>
+
+<div style="display:flex;gap:8px;margin:16px 0">
+<span class="lh-tab active" onclick="showLHTab('mobile')">Mobile</span>
+<span class="lh-tab" onclick="showLHTab('desktop')">Desktop</span>
+</div>
+
+<!-- Mobile Panel -->
+<div class="lh-panel active" id="lh-mobile">
+<h3>Mobile (Emulated Moto G Power, Slow 4G)</h3>
+<div class="lh-grid">
+<div class="lh-card">
+<h4>Performance</h4>
+<div class="lh-gauge g-orange">58</div>
+</div>
+<div class="lh-card">
+<h4>Accessibility</h4>
+<div class="lh-gauge g-orange">84</div>
+</div>
+<div class="lh-card">
+<h4>Best Practices</h4>
+<div class="lh-gauge g-green">96</div>
+</div>
+<div class="lh-card">
+<h4>SEO</h4>
+<div class="lh-gauge g-orange">85</div>
+</div>
+</div>
+
+<h3>Performance Metrics (Mobile)</h3>
+<table>
+<tr><th>Metric</th><th>Value</th><th>Rating</th><th>Weight</th></tr>
+<tr><td>First Contentful Paint (FCP)</td><td>3.7s</td><td><span class="badge b-orange">Needs Improvement</span></td><td>+3</td></tr>
+<tr><td>Largest Contentful Paint (LCP)</td><td>11.0s</td><td><span class="badge b-red">Poor</span></td><td>+0</td></tr>
+<tr><td>Total Blocking Time (TBT)</td><td>160ms</td><td><span class="badge b-green">Good</span></td><td>+28</td></tr>
+<tr><td>Cumulative Layout Shift (CLS)</td><td>0.073</td><td><span class="badge b-green">Good</span></td><td>+24</td></tr>
+<tr><td>Speed Index (SI)</td><td>6.9s</td><td><span class="badge b-orange">Needs Improvement</span></td><td>+3</td></tr>
+</table>
+</div>
+
+<!-- Desktop Panel -->
+<div class="lh-panel" id="lh-desktop">
+<h3>Desktop (Emulated Desktop, Custom Throttling)</h3>
+<div class="lh-grid">
+<div class="lh-card">
+<h4>Performance</h4>
+<div class="lh-gauge g-orange">87</div>
+</div>
+<div class="lh-card">
+<h4>Accessibility</h4>
+<div class="lh-gauge g-orange">83</div>
+</div>
+<div class="lh-card">
+<h4>Best Practices</h4>
+<div class="lh-gauge g-green">96</div>
+</div>
+<div class="lh-card">
+<h4>SEO</h4>
+<div class="lh-gauge g-orange">85</div>
+</div>
+</div>
+
+<h3>Performance Metrics (Desktop)</h3>
+<table>
+<tr><th>Metric</th><th>Value</th><th>Rating</th><th>Weight</th></tr>
+<tr><td>First Contentful Paint (FCP)</td><td>0.4s</td><td><span class="badge b-green">Good</span></td><td>+10</td></tr>
+<tr><td>Largest Contentful Paint (LCP)</td><td>2.3s</td><td><span class="badge b-green">Good</span></td><td>+13</td></tr>
+<tr><td>Total Blocking Time (TBT)</td><td>70ms</td><td><span class="badge b-green">Good</span></td><td>+30</td></tr>
+<tr><td>Cumulative Layout Shift (CLS)</td><td>0.005</td><td><span class="badge b-green">Good</span></td><td>+25</td></tr>
+<tr><td>Speed Index (SI)</td><td>1.3s</td><td><span class="badge b-green">Good</span></td><td>+9</td></tr>
+</table>
+</div>
+
+<h3>Score Summary</h3>
+<table>
+<tr><th>Category</th><th>Mobile</th><th>Desktop</th></tr>
+<tr><td>Performance</td><td><span class="badge b-orange">58</span></td><td><span class="badge b-orange">87</span></td></tr>
+<tr><td>Accessibility</td><td><span class="badge b-orange">84</span></td><td><span class="badge b-orange">83</span></td></tr>
+<tr><td>Best Practices</td><td><span class="badge b-green">96</span></td><td><span class="badge b-green">96</span></td></tr>
+<tr><td>SEO</td><td><span class="badge b-orange">85</span></td><td><span class="badge b-orange">85</span></td></tr>
+</table>
+</div>
+
+<!-- FIELD DATA -->
+<div class="section" id="field">
+<h2>Real-User Field Data (Chrome UX Report)</h2>
+<p>These metrics reflect actual user experience from the Chrome UX Report (CrUX), aggregated over the latest 28-day rolling window. Unlike lab data, these represent real users on real devices and connections.</p>
+
+<div class="callout callout-bad">
+<strong>Core Web Vitals Assessment: FAILED</strong> — LCP of 2.7s on mobile exceeds the 2.5s "Good" threshold. This impacts Google search rankings.
+</div>
+
+<h3>Mobile Field Data</h3>
+<table>
+<tr><th>Metric</th><th>Value</th><th>Good Threshold</th><th>Rating</th></tr>
+<tr><td>Largest Contentful Paint (LCP)</td><td>2.7s</td><td>&le; 2.5s</td><td><span class="badge b-orange">Needs Improvement</span></td></tr>
+<tr><td>Interaction to Next Paint (INP)</td><td>95ms</td><td>&le; 200ms</td><td><span class="badge b-green">Good</span></td></tr>
+<tr><td>Cumulative Layout Shift (CLS)</td><td>0.04</td><td>&le; 0.1</td><td><span class="badge b-green">Good</span></td></tr>
+<tr><td>First Contentful Paint (FCP)</td><td>1.0s</td><td>&le; 1.8s</td><td><span class="badge b-green">Good</span></td></tr>
+<tr><td>Time to First Byte (TTFB)</td><td>0.6s</td><td>&le; 0.8s</td><td><span class="badge b-green">Good</span></td></tr>
+</table>
+
+<h3>Desktop Field Data</h3>
+<table>
+<tr><th>Metric</th><th>Value</th><th>Good Threshold</th><th>Rating</th></tr>
+<tr><td>Largest Contentful Paint (LCP)</td><td>2.7s</td><td>&le; 2.5s</td><td><span class="badge b-orange">Needs Improvement</span></td></tr>
+<tr><td>Interaction to Next Paint (INP)</td><td>62ms</td><td>&le; 200ms</td><td><span class="badge b-green">Good</span></td></tr>
+<tr><td>Cumulative Layout Shift (CLS)</td><td>0</td><td>&le; 0.1</td><td><span class="badge b-green">Good</span></td></tr>
+<tr><td>First Contentful Paint (FCP)</td><td>1.0s</td><td>&le; 1.8s</td><td><span class="badge b-green">Good</span></td></tr>
+<tr><td>Time to First Byte (TTFB)</td><td>0.7s</td><td>&le; 0.8s</td><td><span class="badge b-green">Good</span></td></tr>
+</table>
+
+<div class="callout callout-info">
+<strong>Key Insight:</strong> Real-user metrics are significantly better than lab data. CrUX shows FCP at 1.0s (vs 3.7s in lab) because real users often have cached assets and faster connections than the simulated Slow 4G throttling. LCP remains the primary concern at 2.7s on both mobile and desktop.
+</div>
+</div>
+
+<!-- ANALYTICS STACK -->
+<div class="section" id="analytics">
+<h2>Current Analytics &amp; Tracking Stack</h2>
+<p>Detected analytics and tracking tools currently deployed on thermofisher.com homepage.</p>
+
+<div class="tech-grid">
+<div class="tech-card">
+<h4>&#128202; Analytics Platform</h4>
+<ul>
+<li><strong>Adobe Experience Platform Launch</strong> (Adobe Tags)</li>
+<li>Property: "Thermofisher.com - Required Only"</li>
+<li>Environment: Production</li>
+<li>Build: Mar 10, 2026 (Turbine v29.0.0)</li>
+</ul>
+</div>
+<div class="tech-card">
+<h4>&#128268; Data Collection</h4>
+<ul>
+<li><strong>Adobe Alloy Web SDK</strong> (v2.23.0)</li>
+<li>Modern replacement for AppMeasurement</li>
+<li><strong>digitalData</strong> custom data layer</li>
+<li>Objects: user, page, merchandising</li>
+</ul>
+</div>
+<div class="tech-card">
+<h4>&#128274; Consent &amp; Privacy</h4>
+<ul>
+<li><strong>TrustArc / TRUSTe</strong> - Cookie consent</li>
+<li>Consent Insights - 1x1 tracking pixels</li>
+<li>Hosted on Heroku infrastructure</li>
+</ul>
+</div>
+<div class="tech-card">
+<h4>&#128172; Feedback &amp; Engagement</h4>
+<ul>
+<li><strong>Medallia / Kampyle</strong> - Customer feedback</li>
+<li>Custom Chat launcher (self-hosted)</li>
+<li><strong>UserWay</strong> - Accessibility widget</li>
+</ul>
+</div>
+<div class="tech-card">
+<h4>&#128269; Search &amp; Libraries</h4>
+<ul>
+<li><strong>Oracle Endeca</strong> - Search (v2)</li>
+<li>jQuery + jQuery Migrate 3.4.1</li>
+<li>AEM (Adobe Experience Manager) CMS</li>
+</ul>
+</div>
+<div class="tech-card">
+<h4>&#10060; Not Detected</h4>
+<ul>
+<li>No Google Analytics (GA4 or Universal)</li>
+<li>No Google Tag Manager</li>
+<li>No Adobe Target (A/B testing)</li>
+<li>No Facebook/Social Pixels</li>
+<li>No Hotjar / Session Recording</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- KPI TO ADOBE TOOL MAPPING -->
+<div class="section" id="kpi-mapping">
+<h2>KPI &rarr; Adobe Tool Mapping</h2>
+<p>This section maps common pre-migration KPIs to the specific Adobe tool that provides the data. Since ThermoFisher uses the Adobe Experience Platform stack, most KPIs are available through Adobe Analytics via the Alloy Web SDK.</p>
+
+<table>
+<tr><th>KPI Category</th><th>Specific KPIs</th><th>Adobe Tool / Source</th></tr>
+<tr>
+<td><strong>Website Performance</strong></td>
+<td>Page Load Time, Speed Index, Core Web Vitals (LCP, INP, CLS), FCP, TTFB, Lighthouse Scores</td>
+<td><span class="badge b-blue">AEP Web SDK</span> for RUM data + <span class="badge b-yellow">Google PSI / CrUX</span> (external)</td>
+</tr>
+<tr>
+<td><strong>Traffic &amp; Engagement</strong></td>
+<td>Unique Visitors, Sessions, Page Views, Bounce Rate, Avg Session Duration, Pages/Session</td>
+<td><span class="badge b-blue">Adobe Analytics</span> via Analysis Workspace</td>
+</tr>
+<tr>
+<td><strong>Conversion &amp; Revenue</strong></td>
+<td>Conversion Rate, Cart Abandonment, Revenue, AOV, Add-to-Cart Rate, Checkout Completion</td>
+<td><span class="badge b-blue">Adobe Analytics</span> eCommerce events via <code>digitalData</code> layer</td>
+</tr>
+<tr>
+<td><strong>User Segmentation</strong></td>
+<td>New vs Returning, Device/Browser, Geo Distribution, Customer Segments</td>
+<td><span class="badge b-blue">Adobe Analytics</span> Segments + Visitor Profile</td>
+</tr>
+<tr>
+<td><strong>Content Performance</strong></td>
+<td>Top Landing Pages, Exit Rate, Internal Search, Scroll Depth, Click Maps</td>
+<td><span class="badge b-blue">Adobe Analytics</span> Activity Map + Fallout reports</td>
+</tr>
+<tr>
+<td><strong>SEO</strong></td>
+<td>Organic Traffic, Keyword Rankings, Indexed Pages, Crawl Errors</td>
+<td><span class="badge b-blue">Adobe Analytics</span> (traffic channels) + <span class="badge b-yellow">Google Search Console</span></td>
+</tr>
+<tr>
+<td><strong>A/B Testing</strong></td>
+<td>Test Results, Winning Variants, Conversion Lift</td>
+<td><span class="badge b-orange">Adobe Target</span> (not currently detected — may be on other pages)</td>
+</tr>
+<tr>
+<td><strong>Customer Feedback</strong></td>
+<td>NPS, CSAT, Survey Responses</td>
+<td><span class="badge b-green">Medallia / Kampyle</span> (integrated with Adobe)</td>
+</tr>
+<tr>
+<td><strong>Consent &amp; Privacy</strong></td>
+<td>Opt-in/Opt-out Rates, Cookie Consent Rates</td>
+<td><span class="badge b-green">TrustArc</span> + AEP consent signals</td>
+</tr>
+</table>
+
+<div class="callout callout-info">
+<strong>80% of KPIs come from Adobe Analytics (Analysis Workspace)</strong> — accessed through the <code>digitalData</code> object already implemented on the site. The data layer tracks <code>user</code>, <code>page</code>, and <code>merchandising</code> objects. Request access to the client's Adobe Analytics workspace to pull historical data for these KPIs.
+</div>
+
+<h3>Recommended KPIs to Request from Client</h3>
+<p>The following KPIs should be requested directly from ThermoFisher's team, as they require access to their Adobe Analytics instance:</p>
+<table>
+<tr><th>#</th><th>KPI</th><th>Source</th><th>Timeframe</th></tr>
+<tr><td>1</td><td>Monthly Unique Visitors (Homepage)</td><td>Adobe Analytics</td><td>Last 12 months</td></tr>
+<tr><td>2</td><td>Monthly Page Views (Homepage)</td><td>Adobe Analytics</td><td>Last 12 months</td></tr>
+<tr><td>3</td><td>Bounce Rate (Homepage)</td><td>Adobe Analytics</td><td>Last 6 months avg</td></tr>
+<tr><td>4</td><td>Avg Session Duration</td><td>Adobe Analytics</td><td>Last 6 months avg</td></tr>
+<tr><td>5</td><td>Homepage → PDP Click-through Rate</td><td>Adobe Analytics</td><td>Last 6 months avg</td></tr>
+<tr><td>6</td><td>Internal Search Usage Rate</td><td>Adobe Analytics / Endeca</td><td>Last 6 months avg</td></tr>
+<tr><td>7</td><td>Organic Traffic Share (%)</td><td>Adobe Analytics</td><td>Last 12 months</td></tr>
+<tr><td>8</td><td>Mobile vs Desktop Traffic Split (%)</td><td>Adobe Analytics</td><td>Last 6 months</td></tr>
+<tr><td>9</td><td>Add-to-Cart Rate (from Homepage)</td><td>Adobe Analytics</td><td>Last 6 months avg</td></tr>
+<tr><td>10</td><td>Customer Satisfaction Score (CSAT)</td><td>Medallia</td><td>Last quarter</td></tr>
+</table>
+</div>
+
+<!-- OPPORTUNITIES -->
+<div class="section" id="opportunities">
+<h2>Performance Improvement Opportunities</h2>
+<p>Key areas identified by Lighthouse where performance can be improved during migration:</p>
+
+<h3>Mobile Opportunities (High Impact)</h3>
+<table>
+<tr><th>Issue</th><th>Est. Savings</th><th>Impact</th></tr>
+<tr><td>Render blocking requests</td><td>1,760ms</td><td><span class="badge b-red">High</span></td></tr>
+<tr><td>Reduce unused CSS</td><td>344 KiB</td><td><span class="badge b-orange">Medium</span></td></tr>
+<tr><td>Reduce unused JavaScript</td><td>170 KiB</td><td><span class="badge b-orange">Medium</span></td></tr>
+<tr><td>Use efficient cache lifetimes</td><td>703 KiB</td><td><span class="badge b-orange">Medium</span></td></tr>
+<tr><td>Improve image delivery</td><td>197 KiB</td><td><span class="badge b-orange">Medium</span></td></tr>
+<tr><td>Legacy JavaScript</td><td>40 KiB</td><td><span class="badge b-yellow">Low</span></td></tr>
+<tr><td>Minify JavaScript</td><td>26 KiB</td><td><span class="badge b-yellow">Low</span></td></tr>
+</table>
+
+<h3>Desktop Opportunities</h3>
+<table>
+<tr><th>Issue</th><th>Est. Savings</th><th>Impact</th></tr>
+<tr><td>Use efficient cache lifetimes</td><td>393 KiB</td><td><span class="badge b-orange">Medium</span></td></tr>
+<tr><td>Render blocking requests</td><td>300ms</td><td><span class="badge b-orange">Medium</span></td></tr>
+<tr><td>Improve image delivery</td><td>184 KiB</td><td><span class="badge b-orange">Medium</span></td></tr>
+<tr><td>Reduce unused JavaScript</td><td>169 KiB</td><td><span class="badge b-orange">Medium</span></td></tr>
+<tr><td>Reduce unused CSS</td><td>54 KiB</td><td><span class="badge b-yellow">Low</span></td></tr>
+<tr><td>Legacy JavaScript</td><td>40 KiB</td><td><span class="badge b-yellow">Low</span></td></tr>
+<tr><td>Minify JavaScript</td><td>26 KiB</td><td><span class="badge b-yellow">Low</span></td></tr>
+</table>
+
+<div class="callout callout-good">
+<strong>Migration Impact:</strong> AEM Edge Delivery Services naturally addresses many of these issues — zero render-blocking JS, minimal CSS, automatic image optimization, and CDN-level caching. Post-migration performance scores of 95+ on desktop and 80+ on mobile are achievable targets.
+</div>
+
+<h3>Accessibility Issues Detected</h3>
+<table>
+<tr><th>Issue</th><th>Category</th></tr>
+<tr><td><code>[user-scalable="no"]</code> in viewport meta — prevents zoom</td><td>Best Practices</td></tr>
+<tr><td>Touch targets too small or too close together</td><td>Best Practices</td></tr>
+<tr><td>Links without discernible names</td><td>Names &amp; Labels</td></tr>
+<tr><td>ARIA IDs not unique</td><td>ARIA</td></tr>
+<tr><td>Elements with <code>[tabindex]</code> &gt; 0</td><td>Navigation</td></tr>
+<tr><td>ARIA roles on incompatible elements</td><td>Best Practices</td></tr>
+</table>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="section" id="disclaimer">
+<h2>Disclaimer</h2>
+<div class="callout callout-warn">
+<strong>Important Note:</strong> The metrics presented in this report are indicative and may vary under different circumstances. Lighthouse lab data is captured using simulated network throttling (Slow 4G for mobile, custom throttling for desktop) and emulated devices, which may not exactly reflect real-world conditions. CrUX field data represents a 28-day rolling average from Chrome users and can fluctuate based on traffic patterns, user demographics, device distribution, and network conditions. Scores should be used as directional benchmarks for comparison purposes rather than absolute performance guarantees. Multiple test runs may yield slightly different results due to server load, CDN caching state, third-party script behavior, and other dynamic factors.
+</div>
+</div>
+
+</div>
+
+<footer>
+<p>Performance Baseline Report &bull; thermofisher.com &bull; Generated April 1, 2026</p>
+<p>Data sources: Google PageSpeed Insights, Chrome UX Report (CrUX), Lighthouse v13.0.1</p>
+</footer>
+
+<script>
+function showLHTab(tab){
+  document.querySelectorAll('.lh-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.lh-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('lh-'+tab).classList.add('active');
+  document.querySelectorAll('.lh-tab').forEach(t=>{
+    if(t.textContent.toLowerCase().includes(tab))t.classList.add('active');
+  });
+}
+</script>
+
+</body>
+</html>
