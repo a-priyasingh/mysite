@@ -1,0 +1,26 @@
+# Redirect Map Template - Thermo Fisher AEM 6.4 → AEM EDS Migration
+# Format: source_url,target_url
+# Lines starting with # are ignored
+#
+# Instructions:
+# 1. Populate with all indexed URLs from the source site (use Screaming Frog or Search Console export)
+# 2. Map each source URL to its target EDS URL
+# 3. Run: node validate-redirects.js --map redirects.csv
+#
+# URL Pattern Changes:
+#   Source pattern: https://www.thermofisher.com/{country}/{lang}/home/{path}.html
+#   Target pattern: https://www.thermofisher.com/{country}/{lang}/home/{path}  (may vary)
+#
+# Common mappings:
+# Homepage
+https://www.thermofisher.com/us/en/home.html,https://www.thermofisher.com/us/en/home
+# Category L1
+https://www.thermofisher.com/us/en/home/life-science.html,https://www.thermofisher.com/us/en/home/life-science
+# Category L2
+https://www.thermofisher.com/us/en/home/life-science/pcr.html,https://www.thermofisher.com/us/en/home/life-science/pcr
+# Category L3
+https://www.thermofisher.com/us/en/home/life-science/pcr/real-time-pcr.html,https://www.thermofisher.com/us/en/home/life-science/pcr/real-time-pcr
+# Support pages
+https://www.thermofisher.com/us/en/home/support.html,https://www.thermofisher.com/us/en/home/support
+# Brand pages
+https://www.thermofisher.com/us/en/home/brands/thermo-scientific.html,https://www.thermofisher.com/us/en/home/brands/thermo-scientific

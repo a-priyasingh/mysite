@@ -1,0 +1,16 @@
+{
+  "name": "seo-validation-tools",
+  "version": "1.0.0",
+  "description": "SEO regression and validation tools for AEM EDS migration",
+  "type": "module",
+  "scripts": {
+    "validate:metadata": "node validate-metadata.js",
+    "validate:schema": "node validate-schema.js",
+    "validate:redirects": "node validate-redirects.js",
+    "validate:hreflang": "node validate-hreflang.js",
+    "validate:all": "npm run validate:metadata && npm run validate:schema && npm run validate:hreflang"
+  },
+  "dependencies": {
+    "jsdom": "^24.0.0"
+  }
+}
