@@ -21,14 +21,12 @@ This Solution Design Document (SDD) defines the technical architecture, block li
 
 ### 1.3 Authoring Model
 
-The project adopts **Document Authoring (DA)** as the authoring interface:
+The project adopts **Document Authoring (DA)** as the content management interface, replacing traditional AEM Touch UI with a streamlined, document-based authoring experience.
 
-- Authors work in a web-based document editor at **da.live** (similar to a simplified word processor)
-- Content is structured as text, tables, images, and links
-- Blocks (components) are authored as **tables** — the table header names the block, rows contain the content
-- Variants are specified in the block name using parentheses, e.g., `Accordion (icon-left)`
-- Complex nested content is handled via the **fragment reference pattern** — linking to separate fragment pages
-- No component dialogs, no JCR, no Touch UI
+- Authors create and manage content through a web-based editor at **da.live**, offering a simplified word-processor-like experience with no component dialogs, JCR nodes, or Touch UI interactions.
+- Content is structured as text, headings, images, links, and block tables — where each table represents a component (block) with the header row identifying the block type and rows providing the content.
+- Block variants are specified inline using parentheses in the block name (e.g., `Accordion (icon-left)`), replacing the AEM Style System dropdown.
+- Complex or nested content that cannot be represented within a single table cell is handled via the **fragment reference pattern** — authors link to separately authored fragment pages whose content is rendered inline at delivery time.
 
 ### 1.4 Key Technology Stack
 
@@ -49,6 +47,17 @@ The project adopts **Document Authoring (DA)** as the authoring interface:
 ---
 
 ## 2. In Scope
+
+- Migration of **thermofisher.com** from on-premise AEM (hosted on AWS) to **AEM Edge Delivery Services** with **Document Authoring (DA)**.
+- DA authoring model design — block table structures, variant naming conventions, section patterns, and metadata standards.
+- AEM Cloud onboarding including IMS / Identity configuration.
+- User groups and permissions model for EDS and AEM Cloud authoring environments.
+- Integrations with dependent systems — Header/Footer, Brightcove (video), Dynamic Merchandising Offers, Form Submissions, and Data Layer (Analytics/Target).
+- Asset migration strategy and execution.
+- Current content workflows — review, approval, and publishing.
+- Third-party and extension integrations (e.g., Immersive Experience).
+- Vanity / friendly URL migration and redirect strategy.
+- MSM (Multi-Site Manager), translation, and rollout configuration for regional sites.
 
 ### 2.1 Sites & Content
 
@@ -135,20 +144,8 @@ The following blocks are in scope for design and implementation:
 
 ## 3. Out of Scope
 
-| Item | Rationale |
-|---|---|
-| **MSM / Multi-Site Manager** | Not addressed in this phase; translation and multi-region management to be handled separately |
-| **Translations / i18n** | Language variants and localized content outside CUSA region are not in scope |
-| **Experience Fragments migration** | Replaced by DA fragment reference pattern; legacy XF migration is out of scope |
-| **AEM Assets migration** | Enterprise DAM strategy and bulk asset migration handled separately |
-| **Workflows** | Content approval workflows are acknowledged but design deferred to a later phase |
-| **User Groups & Permissions** | Permission model design acknowledged but not fully detailed in this SDD |
-| **Internet Explorer support** | IE is end-of-life and not supported |
-| **Non-US regions** | CCI, CBR, LATAM, EMEA — to be addressed in subsequent phases |
-| **AEM as a Cloud Service migration** | This project targets EDS/DA, not AEMaaCS Author environment |
-| **Custom search implementation** | Search functionality relies on existing infrastructure or third-party tools |
-| **E-commerce / cart integration** | Store and transactional features outside scope of this SDD |
-| **Cutover & coexistence strategy** | Phased parallel run, go-live sequencing, and rollback plan to be defined in a separate cutover plan |
+- Any changes required in **downstream systems** consuming data from AEM are out of scope for Adobe.
+- Any changes required in **external APIs** providing data to or consuming data from EDS are out of scope for Adobe.
 
 ---
 
@@ -170,61 +167,12 @@ The following blocks are in scope for design and implementation:
 
 ## 5. Assumptions
 
-### 5.1 Platform & Infrastructure
-
 | # | Assumption |
 |---|---|
-| A1 | AEM Edge Delivery Services (EDS) is the approved delivery platform for the US site. |
-| A2 | Document Authoring (DA) at da.live is the primary authoring interface — Universal Editor (UE/xwalk) is not in scope. |
-| A3 | The EDS CDN (Adobe-managed) will be used for content delivery; a BYO CDN pattern may be applied if required. |
-| A4 | GitHub is the code repository with automatic code sync to EDS on push. |
-| A5 | The existing AEM 6.4 instance will continue to serve pages not yet migrated (coexistence period). |
-
-### 5.2 Content & Authoring
-
-| # | Assumption |
-|---|---|
-| A6 | Authors will be trained on DA/EDS authoring model (table-based block authoring, variants in header rows, fragment references). |
-| A7 | Content migration will be phased — not all pages migrate at once. Priority pages will be identified by business stakeholders. |
-| A8 | The H1 heading on pages is authored as default content above block tables, not inside blocks. |
-| A9 | Breadcrumbs are auto-generated from site navigation hierarchy and not manually authored per page. |
-| A10 | Fragment pages (for complex nested content in accordions, tabs, etc.) are authored as separate DA documents in a `/fragments/` path convention. |
-
-### 5.3 Performance & Quality
-
-| # | Assumption |
-|---|---|
-| A11 | The target is Lighthouse 100 on all Core Web Vitals (LCP < 2.5s, CLS < 0.1, INP < 200ms). |
-| A12 | EDS best practices ("keeping it 100") will be followed for all block implementations — no heavy frameworks, no build steps, minimal JS. |
-| A13 | Third-party scripts (analytics, martech, chat) will be loaded in `delayed.js` to avoid impacting LCP. |
-| A14 | Images uploaded by authors are automatically optimized by EDS; assets committed to git must be optimized manually. |
-
-### 5.4 Integrations
-
-| # | Assumption |
-|---|---|
-| A15 | Brightcove is the approved video platform; video embed integration patterns will be standardized. |
-| A16 | Product data for PDPs is syndicated from an existing product API / content source — the API contract will be provided by the PDP team. |
-| A17 | Form submission endpoints and business logic are provided by the backend/integration team. |
-| A18 | Adobe Analytics / Target integration will use a data layer approach compatible with EDS performance requirements. |
-
-### 5.5 Migration
-
-| # | Assumption |
-|---|---|
-| A19 | A content mapping from AEM 6.4 components to EDS blocks is agreed upon before migration begins. |
-| A20 | URL structure and redirect strategy are defined collaboratively with SEO and engineering teams. |
-| A21 | Historical content that is no longer active/relevant will be identified for archival rather than migration. |
-| A22 | KPI baselines will be captured before migration using Page Insights / Lighthouse to enable before/after comparison. |
-
-### 5.6 Team & Process
-
-| # | Assumption |
-|---|---|
-| A23 | The development team has access to the GitHub repository with appropriate branch protection and review processes. |
-| A24 | Code changes follow the EDS publishing process: feature branch → PR with preview URL → review → merge to main. |
-| A25 | Content authors, developers, and QA have access to the DA environment (da.live) and EDS preview/live URLs. |
-| A26 | Deepti and team members using AEM Coder are producing block specifications following the agreed DA spec template format. |
+| A1 | Since this represents a fundamental shift in authoring experience, all customizations built on the current AEM Author environment (Touch UI extensions, custom dialogs, workflow steps) will not carry forward to EDS and must be re-evaluated against DA capabilities. |
+| A2 | For content migration to proceed, all pages must have a publicly accessible URL. Pages that are currently unpublished must be activated on a reachable URL prior to migration. |
+| A3 | US/en will serve as the baseline site for MSM regional content copies. Regional pages with overridden (broken-inheritance) content must be identified and cataloged prior to migration to determine which require independent treatment. |
+| A4 | Before the implementation phase begins, Thermo Fisher must finalize the decision on which **Edge Worker** (CDN edge compute) pattern will be used for the project. |
 
 ---
 
