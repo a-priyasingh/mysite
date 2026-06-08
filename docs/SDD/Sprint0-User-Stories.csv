@@ -1,0 +1,397 @@
+Summary,Issue Type,Description,Acceptance Criteria,Story Points,Component,Priority
+"[EDS-DA] Provision AEM Edge Delivery Services project repository",Story,"As a development team, we need an EDS GitHub repository provisioned with the AEM Boilerplate so that we have the foundational codebase to begin development.
+
+Tasks:
+- Create GitHub repository from aem-boilerplate template
+- Configure fstab.yaml for content source (Google Drive or SharePoint)
+- Validate code sync by accessing .page and .live URLs
+- Set up branch protection rules on main
+- Add team members with appropriate access","- GitHub repo created from aem-boilerplate
+- fstab.yaml configured and committed
+- .page preview URL accessible and rendering default content
+- .live URL accessible
+- Branch protection enabled on main
+- All team members have repo access",,EDS-DA,High
+"[EDS-DA] Set up content source (Google Drive / SharePoint)",Story,"As a content author, we need the content source (Google Drive or SharePoint) configured and connected to the EDS project so that authored documents render as web pages.
+
+Tasks:
+- Create shared drive / SharePoint site for content
+- Set up folder structure (drafts, published)
+- Share with AEM code sync service account
+- Verify document-to-page rendering pipeline
+- Create sample index document","- Shared drive/SharePoint site created
+- Folder structure established
+- AEM service account has read access
+- Sample document created and renders at preview URL
+- Index (homepage) document renders correctly",,EDS-DA,High
+"[EDS-DA] Configure local development environment",Story,"As a developer, I need a documented local development setup so that all team members can run the EDS project locally with hot-reload.
+
+Tasks:
+- Document Node.js version requirements
+- Create package.json with AEM CLI dependency
+- Document 'aem up' local dev server startup
+- Verify localhost:3000 renders content
+- Create CONTRIBUTING.md with setup instructions","- All developers can run 'npm install && aem up' successfully
+- localhost:3000 serves content with live reload
+- Setup documented in README or CONTRIBUTING.md
+- Minimum Node.js version specified",,EDS-DA,High
+"[EDS-DA] Establish coding standards and linting configuration",Story,"As a development team, we need ESLint and Stylelint configured with project-specific rules so that code quality is consistent from Day 1.
+
+Tasks:
+- Configure ESLint with Airbnb rules (AEM standard)
+- Configure Stylelint for CSS
+- Set up pre-commit hooks (husky + lint-staged)
+- Verify 'npm run lint' passes on boilerplate code
+- Document coding conventions","- ESLint configured and passing on all existing JS files
+- Stylelint configured and passing on all existing CSS files
+- Pre-commit hooks prevent unlinted code from being committed
+- 'npm run lint' and 'npm run lint:fix' scripts working
+- Coding standards documented",,EDS-DA,High
+"[EDS-DA] Define and implement global design tokens (CSS custom properties)",Story,"As a designer/developer, we need brand-aligned CSS custom properties (colors, typography, spacing) defined so that all blocks inherit consistent styling.
+
+Tasks:
+- Extract design tokens from brand guidelines or Figma
+- Define CSS custom properties in styles/styles.css
+- Set up font-face declarations in styles/fonts.css
+- Configure responsive breakpoints (600px, 900px, 1200px)
+- Document design token usage","- CSS custom properties defined for colors, fonts, spacing, shadows
+- Font files added to /fonts/ directory
+- @font-face declarations in fonts.css
+- Responsive breakpoints documented and consistent
+- Token documentation/cheat sheet available",,EDS-DA,Medium
+"[EDS-DA] Create page template skeleton (header, footer, section structure)",Story,"As an author, we need the basic page template structure (header, footer, default section styling) implemented so that content renders in a standard page layout.
+
+Tasks:
+- Implement nav/header block loading in scripts.js
+- Implement footer block loading
+- Create header and footer documents in content source
+- Style default section containers (max-width, padding)
+- Validate responsive layout on mobile/tablet/desktop","- Header loads and displays navigation
+- Footer loads and displays footer content
+- Default sections have proper max-width and responsive padding
+- Page renders correctly at mobile (375px), tablet (768px), desktop (1440px)
+- No layout shift (CLS) on page load",,EDS-DA,Medium
+"[EDS-DA] Set up CI/CD pipeline and quality gates",Story,"As a team, we need automated checks on pull requests so that code quality and performance are enforced before merge.
+
+Tasks:
+- Configure GitHub Actions for lint checks on PR
+- Set up Lighthouse CI for performance scoring
+- Configure AEM Code Sync status checks
+- Define merge requirements (lint pass + code sync green)
+- Document PR workflow","- GitHub Actions workflow runs lint on every PR
+- Lighthouse CI runs and reports score
+- AEM Code Sync check shows green on successful sync
+- PRs cannot merge without passing required checks
+- PR template includes preview URL requirement",,EDS-DA,Medium
+"[EDS-DA] Define content model and block inventory",Story,"As a content strategist, we need a documented content model defining which blocks are needed, their authoring patterns, and their content structure so that development and authoring are aligned.
+
+Tasks:
+- Analyze target site/design for content patterns
+- List all required blocks with descriptions
+- Define authoring pattern for each block (table structure, naming)
+- Identify which blocks exist in Block Collection vs. custom
+- Create prioritized block backlog","- Block inventory document created with all identified blocks
+- Each block has: name, description, authoring pattern, priority
+- Blocks categorized: available (boilerplate/collection) vs. custom build
+- Block backlog prioritized for Sprint 1+
+- Content model reviewed with authoring team",,EDS-DA,Medium
+"[EDS-DA] Configure metadata and SEO foundations",Story,"As an SEO specialist, we need metadata handling, robots.txt, sitemap, and Open Graph tags configured so that the site is search-engine ready from the start.
+
+Tasks:
+- Configure metadata block handling in content documents
+- Set up head.html with standard meta tags, OG tags, favicon
+- Create robots.txt
+- Configure sitemap.xml generation
+- Set up canonical URL handling","- Metadata from content documents renders in page <head>
+- Open Graph tags render correctly (test with social debuggers)
+- robots.txt accessible and correctly configured
+- Sitemap generation configured
+- Canonical URLs set properly
+- Favicon configured in head.html",,EDS-DA,Medium
+"[EDS-DA] Set up authoring documentation and content guidelines",Story,"As a content author, I need documentation on how to create content in the new document-based authoring model so that I can begin creating pages independently.
+
+Tasks:
+- Create authoring quick-start guide
+- Document block authoring patterns (how to create each block)
+- Create content template documents for authors to copy
+- Document image handling guidelines
+- Set up example/reference pages","- Quick-start guide document created and shared
+- Block authoring guide with visual examples
+- Template documents available for authors to duplicate
+- Image sizing/format guidelines documented
+- At least 2 reference pages created showing all block patterns",,EDS-DA,Low
+"[ACCS] Provision AEM as a Cloud Service environment",Story,"As an infrastructure team, we need AEMaaCS environments (Dev, Stage, Prod) provisioned via Cloud Manager so that the team has target environments for development and testing.
+
+Tasks:
+- Request AEMaaCS program creation in Cloud Manager
+- Provision Dev environment
+- Provision Stage environment
+- Confirm Prod environment allocation
+- Document environment URLs and access","- AEMaaCS program created in Cloud Manager
+- Dev environment provisioned and accessible
+- Stage environment provisioned and accessible
+- Prod environment confirmed in plan
+- Environment URLs documented
+- Admin access verified for all environments",,ACCS,High
+"[ACCS] Configure AEM DAM folder structure and permissions",Story,"As a DAM administrator, we need the target folder taxonomy created in AEM Assets with appropriate permission groups so that migrated content lands in a governed structure.
+
+Tasks:
+- Create top-level DAM folder structure per design
+- Create AEM user groups aligned to access model
+- Apply folder-level permissions (ACLs)
+- Verify permission boundaries with test users
+- Document permission matrix","- All designed top-level folders created under /content/dam/
+- User groups created matching permission design
+- ACLs applied and verified (read/write boundaries correct)
+- Test users can only access designated folders
+- Permission matrix documented and approved",,ACCS,High
+"[ACCS] Design and configure metadata schema",Story,"As a DAM administrator, we need custom metadata schemas configured in AEM so that migrated assets can carry all required business metadata.
+
+Tasks:
+- Define metadata schema fields (from metadata mapping document)
+- Create custom metadata schema form in AEM
+- Apply schema to relevant DAM folders
+- Create required dropdown value lists
+- Test schema with manual asset upload","- Custom metadata schema created in AEM
+- Schema applied to correct folders
+- All custom fields render in asset properties editor
+- Dropdown fields populated with correct values
+- Required vs. optional fields enforced correctly
+- Schema tested with manual upload of sample assets",,ACCS,High
+"[ACCS] Create tag taxonomy in AEM",Story,"As a content team, we need the tag taxonomy created in AEM so that assets can be categorized and searchable via tags during and after migration.
+
+Tasks:
+- Design tag namespace hierarchy
+- Create root namespaces in AEM Tag Admin
+- Populate tag tree with all required values
+- Map source keywords/categories to AEM tag paths
+- Export tag-to-source-value mapping for migration scripts","- Tag namespaces created in AEM
+- All tag values populated per taxonomy design
+- Tag hierarchy navigable in AEM Tag Admin
+- Mapping CSV available (source_value → aem_tag_path)
+- Tags assignable to assets in AEM UI",,ACCS,High
+"[ACCS] Configure asset processing profiles",Story,"As a DAM administrator, we need processing profiles configured so that images, videos, and documents are automatically processed (renditions, thumbnails, transcoding) upon upload.
+
+Tasks:
+- Configure image processing profile (rendition sizes)
+- Configure video processing profile (if Dynamic Media enabled)
+- Configure document extraction settings
+- Assign profiles to relevant DAM folders
+- Test processing with sample uploads","- Image processing profile generates required rendition sizes
+- Video transcoding profile configured (if applicable)
+- Document text extraction enabled
+- Profiles assigned to correct folders
+- Sample assets of each type processed correctly on upload",,ACCS,Medium
+"[ACCS] Set up Connected Assets or Dynamic Media (if applicable)",Story,"As a delivery team, we need asset delivery mechanism configured (Connected Assets for EDS or Dynamic Media for optimized delivery) so that published assets are performant.
+
+Tasks:
+- Determine delivery strategy (Connected Assets vs. Dynamic Media vs. direct DAM URLs)
+- Configure chosen delivery mechanism
+- Test asset delivery URLs from EDS pages
+- Document URL patterns for development team
+- Validate performance (CDN caching, image optimization)","- Asset delivery strategy decided and documented
+- Configuration completed for chosen mechanism
+- Assets accessible via delivery URLs
+- URL pattern documentation available for EDS developers
+- Performance validated (load time, CDN headers correct)",,ACCS,Medium
+"[ACCS] Configure Cloud Manager pipelines for AEM customizations",Story,"As a DevOps engineer, we need Cloud Manager CI/CD pipelines configured so that any AEM customizations (OSGi configs, custom workflows, metadata schemas as code) can be deployed consistently.
+
+Tasks:
+- Set up Cloud Manager Git repository
+- Configure build pipeline (Dev)
+- Configure promotion pipeline (Dev → Stage → Prod)
+- Define deployment strategy
+- Test pipeline with initial commit","- Cloud Manager repo set up with AEM project archetype
+- Dev pipeline builds and deploys successfully
+- Promotion pipeline configured for Stage and Prod
+- Pipeline runs on git push (or manual trigger as configured)
+- Test deployment verified on Dev environment",,ACCS,Medium
+"[ACCS] Define user groups, roles, and access control model",Story,"As an administrator, we need AEM user groups and roles defined so that authors, reviewers, and admins have appropriate access levels across the DAM.
+
+Tasks:
+- Define role matrix (Admin, Author, Reviewer, ReadOnly)
+- Create AEM groups in Admin Console
+- Configure IMS/SAML SSO integration (if required)
+- Map existing team members to roles
+- Test access boundaries per role","- Role matrix documented and approved
+- AEM groups created with correct permissions
+- SSO/IMS integration tested (if applicable)
+- Team members mapped to appropriate groups
+- Access boundaries verified (can/cannot actions per role)",,ACCS,Medium
+"[Assets-Migration] S3 bucket inventory and assessment",Story,"As a migration engineer, we need a complete inventory of the source S3 bucket so that we can plan batch sizing, identify edge cases, and estimate migration duration.
+
+Tasks:
+- Run S3 inventory export (all objects with metadata)
+- Analyze: total count, total size, distribution by type
+- Identify oversized assets (>2GB)
+- Identify assets with special characters in names
+- Identify duplicate assets (hash comparison)
+- Generate assessment report","- Complete S3 inventory exported (CSV/JSON)
+- Summary report: total assets, total size (GB/TB), breakdown by type
+- Edge cases identified: oversized files, special characters, duplicates
+- Folder depth analysis completed
+- Assessment report reviewed by migration lead",,Assets-Migration,High
+"[Assets-Migration] Define folder transformation rules",Story,"As a migration architect, we need documented folder mapping rules so that S3 source paths can be programmatically transformed to AEM DAM target paths.
+
+Tasks:
+- Document all transformation rule types needed (rename, flatten, merge, split, conditional)
+- Write rules for each source folder pattern
+- Define default handling for unmatched paths
+- Define exclusion rules (temp files, thumbnails, etc.)
+- Review and approve rules with stakeholders","- Folder mapping rules document complete (CSV/JSON format)
+- All source folders have a matching rule or explicit exclusion
+- Default handling defined for unmatched assets
+- Exclusion list documented with justification
+- Rules reviewed and approved by DAM owner",,Assets-Migration,High
+"[Assets-Migration] Build metadata extraction and transformation pipeline",Story,"As a migration engineer, we need an automated pipeline that extracts metadata from the source database/CSV, joins it to assets, and transforms it to AEM-compatible format.
+
+Tasks:
+- Build database/CSV metadata extraction script
+- Implement join logic (metadata record ↔ asset by key)
+- Apply field-level transformations per mapping document
+- Generate AEM-compatible metadata CSV output
+- Handle edge cases (missing metadata, duplicates, orphans)","- Metadata extraction script runs against source successfully
+- Join logic links >95% of assets to metadata records
+- Orphan report generated (assets without metadata, metadata without assets)
+- Transformed metadata CSV passes AEM format validation
+- Multi-value fields correctly pipe-delimited
+- Date fields in ISO 8601 format",,Assets-Migration,High
+"[Assets-Migration] Build folder transformation and staging script",Story,"As a migration engineer, we need an automated script that copies assets from source S3 to staging S3 with the new folder structure applied so that Bulk Import can ingest from a pre-structured source.
+
+Tasks:
+- Implement path transformation engine (apply rules from mapping doc)
+- Build S3-to-S3 copy pipeline with new paths
+- Handle filename sanitization (remove special characters)
+- Generate source-to-target mapping log
+- Build validation: count source vs. staged assets","- Transformation script processes full inventory
+- Assets copied to staging S3 with correct target paths
+- Filenames sanitized per AEM naming rules
+- Complete source→target mapping CSV generated
+- Asset count matches (source minus exclusions = staged)",,Assets-Migration,High
+"[Assets-Migration] Configure AEMaaCS Bulk Import for S3",Story,"As a migration engineer, we need AEMaaCS Bulk Import configured and tested with S3 connectivity so that we have a proven ingestion mechanism.
+
+Tasks:
+- Create IAM user with minimum S3 permissions for AEM
+- Configure Bulk Import in AEM (S3 connector settings)
+- Test connectivity with 10-asset sample
+- Configure import settings (overwrite mode, metadata CSV)
+- Document configuration for team","- IAM user/role created with s3:GetObject + s3:ListBucket
+- Bulk Import configuration saved in AEM
+- Connectivity test passes (AEM reads from staging S3)
+- 10-asset test import succeeds with correct folder placement
+- Metadata CSV applied correctly to test assets
+- Configuration documented",,Assets-Migration,High
+"[Assets-Migration] Execute dry run migration (validation sample)",Story,"As a QA team, we need a dry run migration of 500-1000 representative assets so that we validate the end-to-end pipeline before full-scale execution.
+
+Tasks:
+- Select representative sample (all types, all rule patterns, edge cases)
+- Execute full pipeline: transform → stage → import → metadata
+- Run validation checklist against imported sample
+- Measure performance metrics (throughput, error rate)
+- Document findings and required fixes","- 500-1000 assets migrated end-to-end to AEM Dev/Stage
+- All assets at correct target paths
+- Metadata correctly applied (spot-check 50 assets)
+- Renditions generated successfully
+- Error rate <1%
+- Performance metrics captured and extrapolated to full volume
+- Issues documented with remediation plan",,Assets-Migration,Medium
+"[Assets-Migration] Define migration batch strategy and schedule",Story,"As a project manager, we need a documented batch strategy with schedule so that the full migration can be executed in a controlled, trackable manner.
+
+Tasks:
+- Calculate total batches based on dry run throughput
+- Group assets into logical batches (by folder, type, or priority)
+- Define batch sequence (low-risk first, high-visibility last)
+- Create migration schedule with dates and owners
+- Define go/no-go checkpoints between batches","- Batch strategy document complete
+- Total batches defined with asset counts per batch
+- Sequence and priority defined
+- Schedule with target dates for each batch
+- Checkpoints defined between batches
+- Rollback criteria documented per batch",,Assets-Migration,Medium
+"[Cross-Stream] Define integration architecture (EDS + ACCS)",Story,"As a solution architect, we need the integration pattern between EDS pages and AEM Assets documented so that developers know how to reference DAM assets from EDS content.
+
+Tasks:
+- Document how EDS pages reference AEM Assets (URL patterns)
+- Define image optimization strategy (srcset, WebP, lazy loading)
+- Document Dynamic Media URL construction (if applicable)
+- Define fallback strategy for assets not yet migrated
+- Create integration diagram","- Integration architecture document created
+- URL pattern for DAM asset references documented
+- Image optimization approach defined and documented
+- Dynamic Media URL format documented (if applicable)
+- Fallback strategy for phased migration defined
+- Architecture diagram created and reviewed",,Cross-Stream,High
+"[Cross-Stream] Establish project communication and ceremonies",Story,"As a scrum master, we need sprint ceremonies, communication channels, and reporting cadence established so that the full team operates efficiently across all streams.
+
+Tasks:
+- Schedule recurring ceremonies (standup, planning, review, retro)
+- Set up communication channels (Slack/Teams)
+- Define cross-stream sync cadence
+- Create status reporting template
+- Define escalation paths","- All ceremonies scheduled and recurring
+- Communication channels created and team onboarded
+- Cross-stream sync meeting scheduled (min weekly)
+- Status report template agreed upon
+- RACI matrix for escalations documented",,Cross-Stream,High
+"[Cross-Stream] Set up project tracking and backlog management",Story,"As a project manager, we need Jira (or equivalent) configured with proper epics, components, and board views so that all three streams are trackable in a unified view.
+
+Tasks:
+- Create Jira project (or configure existing)
+- Set up components: EDS-DA, ACCS, Assets-Migration, Cross-Stream
+- Create epics for each major workstream
+- Configure board views (team board, stream-specific views)
+- Import Sprint 0 stories","- Jira project configured with all components
+- Epics created for each stream
+- Board views configured (unified + per-stream)
+- Sprint 0 stories imported and prioritized
+- Team members added with correct roles",,Cross-Stream,Medium
+"[Cross-Stream] Define Definition of Done (DoD) and quality criteria",Story,"As a team, we need an agreed Definition of Done so that all streams have consistent quality expectations for completing stories.
+
+Tasks:
+- Draft DoD covering code, content, and infrastructure work
+- Include performance criteria (Lighthouse 100 for EDS)
+- Include accessibility criteria (WCAG 2.1 AA)
+- Include documentation requirements
+- Review and agree with full team","- Definition of Done documented and agreed
+- Covers: code quality, testing, documentation, review
+- Performance criteria: Lighthouse >= 95 (target 100) for EDS
+- Accessibility criteria: WCAG 2.1 AA compliance
+- All team members acknowledged and committed to DoD",,Cross-Stream,Medium
+"[Cross-Stream] Security review and access provisioning",Story,"As a security lead, we need all access credentials, service accounts, and security configurations reviewed and provisioned so that the team can work securely across all platforms.
+
+Tasks:
+- Provision Adobe Admin Console access for team
+- Set up GitHub access (repo permissions)
+- Configure S3 access (IAM users/roles)
+- Set up service accounts (AEM code sync, content source)
+- Security review of all integration points","- All team members have appropriate Adobe Admin Console access
+- GitHub repo access granted per role
+- S3 IAM credentials provisioned (migration team only)
+- Service accounts created and documented
+- Security review completed; no open vulnerabilities
+- Credential management approach documented (vault/secrets)",,Cross-Stream,High
+"[Cross-Stream] Create technical architecture document",Story,"As a solution architect, we need a consolidated technical architecture document covering all three streams so that the team has a shared understanding of the overall solution.
+
+Tasks:
+- Document EDS architecture (repo, content source, delivery)
+- Document ACCS architecture (environments, pipelines, integrations)
+- Document migration architecture (S3, staging, Bulk Import)
+- Define integration touchpoints between streams
+- Create architecture diagrams (C4 Level 1 & 2)","- Technical architecture document created
+- All three streams represented with clear boundaries
+- Integration points between streams documented
+- Architecture diagrams (system context + container level)
+- Document reviewed and approved by tech leads
+- Shared with full team",,Cross-Stream,Medium
+"[Cross-Stream] Risk register and dependency tracking setup",Story,"As a project manager, we need a risk register and dependency tracker established so that cross-stream risks and blockers are visible and actively managed.
+
+Tasks:
+- Create risk register template
+- Identify initial risks per stream
+- Document cross-stream dependencies
+- Define risk review cadence (weekly)
+- Assign risk owners","- Risk register created with initial entries per stream
+- Cross-stream dependencies documented and linked
+- Risk owners assigned for each identified risk
+- Weekly risk review scheduled
+- Escalation criteria defined for high/critical risks",,Cross-Stream,Medium
