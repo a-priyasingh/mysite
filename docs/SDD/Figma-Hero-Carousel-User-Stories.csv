@@ -1,4 +1,47 @@
 Summary,Issue Type,Description,Acceptance Criteria,Story Points,Component,Priority
+"[EDS-DA][XMOD] Hero Carousel - block model definition (XMOD)","Story","As a developer using the XMOD model-driven workflow, I need the Hero Carousel block model fully defined so that the component-definition.json, component-models.json, and component-filters.json can be generated and the block authored in Universal Editor / DA without rework.
+
+BLOCK IDENTITY (names must match EXACTLY across markdown title, component-definition.json, and template name):
+- Block title: 'Carousel'
+- Block name/key: carousel
+- Variant: 'carousel (hero)' for the hero/banner styling
+- Kind: container (composite) + repeating item
+- Model ids: container = 'carousel'; item = 'carousel-item' (must be separate models)
+
+CONTAINER MODEL fields (carousel) - settings for the whole carousel:
+- autoplay (boolean, optional, default false)
+- interval (number, optional, default 5000) -> ms between slides when autoplay
+- loop (boolean, optional, default true)
+- showDots (boolean, optional, default true)
+- showArrows (boolean, optional, default true)
+- showCounter (boolean, optional, default true) -> the '1/5' indicator
+
+ITEM MODEL fields (carousel-item) - one per slide (5 slides in design):
+- backgroundImage (reference/image, REQUIRED) -> full-bleed <picture>; needs alt
+- eyebrow (text, optional, hide if empty) -> Girl Scout Bold 20/24, white
+- heading (text, REQUIRED, max ~80 chars) -> Girl Scout Bold 48/58, white, H2
+- primaryCta (aem-content/link, optional) -> outline button, uppercase label
+- secondaryCta (aem-content/link, optional) -> text link + right chevron, uppercase
+- termsLink (aem-content/link, optional) -> bottom-right, Trefoil Sans 600 12/17
+
+MODELING RULES (per xwalk requirements):
+- Container model must NOT map to the repeated item; item model is mandatory and separate
+- component-filters.json must allow 'carousel-item' inside 'carousel'
+- Each block must have its associated _carousel.json
+- Field hints required in each authored cell so parsers map correctly
+
+Tasks:
+- Define container and item field models with the fields above
+- Author component-definition.json, component-models.json, component-filters.json entries
+- Apply field collapsing for image+alt where relevant; group CTA fields in editor
+- Provide field-hinted sample content (5 slides)","- component-definition.json registers 'Carousel' with the exact title
+- component-models.json defines container model 'carousel' AND separate item model 'carousel-item'
+- component-filters.json allows 'carousel-item' inside the 'carousel' container
+- _carousel.json present and valid
+- All field types, required flags, and defaults match the model above
+- Field hints present/correct in each cell; sample content validates against the UE model
+- Authoring a 5-slide carousel in Universal Editor produces the expected DOM
+- See docs/SDD/XMOD-Block-User-Story-Template.md for the modeling checklist","","EDS-DA","High"
 "[EDS-DA] Hero Carousel block - core build & decoration","Story","As a developer, I need to build a Hero/Banner Carousel block for the Girl Scouts site (based on the Figma 'Banner' component, node 5168-208528, verified via Figma API) so that authors can present rotating promotional slides on the homepage and landing pages.
 
 VERIFIED design spec (Desktop Banner 16:9, 1280x720):
