@@ -1,57 +1,69 @@
 Summary,Issue Type,Description,Acceptance Criteria,Story Points,Component,Priority
-"[EDS-DA] Hero Carousel block - core build & decoration","Story","As a developer, I need to build a Hero/Banner Carousel block for the Girl Scouts site (based on the Figma 'Banner' component, node 5168-208528) so that authors can present rotating promotional slides on the homepage and landing pages.
+"[EDS-DA] Hero Carousel block - core build & decoration","Story","As a developer, I need to build a Hero/Banner Carousel block for the Girl Scouts site (based on the Figma 'Banner' component, node 5168-208528, verified via Figma API) so that authors can present rotating promotional slides on the homepage and landing pages.
 
-Design reference: Desktop frame 1280x720, padding 60px 120px, flex column, justify space-between. Each slide has a full-bleed background image, an eyebrow line, a large serif heading, a primary outline button, a secondary text link with chevron, and an optional Terms & Conditions link bottom-right.
+VERIFIED design spec (Desktop Banner 16:9, 1280x720):
+- Layout: vertical flex, justify space-between, padding 60px 120px
+- 5 slides (design shows '1/5' counter and 5 position dots)
+- Per slide: full-bleed background image; content block (top-left) with eyebrow + heading + button row; Terms & Conditions link bottom-right
+- Content frame: vertical, 8px gap between eyebrow and heading
 
-Approach: Adapt the Block Collection Carousel (/block-collection/carousel) for slide navigation/structure and reuse the local hero block's slide content/overlay styling. Do NOT build carousel mechanics from scratch.
+Approach: Adapt the Block Collection Carousel (/block-collection/carousel) for slide mechanics and reuse the local hero block's background/overlay/content styling. Do NOT build carousel mechanics from scratch.
 
 Tasks:
-- Create blocks/carousel/carousel.js and carousel.css (or hero-carousel variant)
+- Create/extend a carousel block (carousel.js + carousel.css)
 - Decorate each slide row into a slide with background image + content container
 - Implement slide track, active-slide state, and transition
-- Wire arrows and dots to navigation logic","- Block renders one slide per authored row
-- Background image is full-bleed; content overlays with readable contrast
-- Eyebrow, heading, primary button, and secondary link render per slide
+- Wire navigation controls (see navigation story)","- Block renders one slide per authored row (supports 5 slides)
+- Background image is full-bleed; content overlays top-left with readable contrast
+- Eyebrow, heading, primary button, secondary link, and Terms link render per slide
 - Active slide visible; others hidden; smooth transition between slides
-- No console errors; block decorates within eager/lazy phase appropriately
+- No console errors; block decorates in the correct loading phase
 - Code passes npm run lint","","EDS-DA","High"
 "[EDS-DA] Hero Carousel - DA authoring model & content structure","Story","As a content author, I need a clear Document Authoring structure for the Hero Carousel so that I can create and edit slides in DA without developer help.
 
-Authoring model (block table named 'Carousel' or 'Hero Carousel'): each slide = one table row. Suggested columns/structure per slide:
+Authoring model (block table named 'Carousel'): each slide = one table row. Structure per slide:
 - Image cell (background image)
-- Content cell containing: eyebrow text (plain line), heading (H1/H2), primary CTA (link styled as button), secondary CTA (link), optional Terms & Conditions link
+- Content cell containing: eyebrow text (first line), heading (H1/H2), primary CTA (link -> rendered as button), secondary CTA (link -> rendered as text link with right chevron), optional Terms & Conditions link
+
+VERIFIED slide content from Figma slide 1: eyebrow 'Shop Early and Save'; heading 'Get 20% Off On Orders Of $50 Or More*'; primary 'SHOP PRODUCTS'; secondary 'EXPLORE MORE'; 'Terms & Conditions*'.
 
 Tasks:
-- Define and document the exact table layout authors will use
-- Document how eyebrow vs heading vs CTAs are distinguished (e.g., first line = eyebrow, heading = bold/H-level, links order = primary then secondary)
-- Provide a sample DA document with 4 slides matching the Figma
-- Document optional cells (Terms link) and graceful handling when omitted","- Authoring structure documented with a visual example
-- Sample DA doc renders correctly as a 4-slide carousel
-- Omitting the secondary link or Terms link does not break layout
+- Define and document the exact table layout authors use
+- Document how eyebrow vs heading vs primary vs secondary vs terms are distinguished by position/order
+- Provide a sample DA document with 5 slides matching the Figma
+- Handle optional cells (secondary link, Terms link) gracefully when omitted","- Authoring structure documented with a visual example
+- Sample DA doc renders correctly as a 5-slide carousel
+- Omitting secondary link or Terms link does not break layout
 - Authors can add/remove/reorder slides by adding/removing rows
-- Eyebrow, heading, and both CTAs map to the correct rendered elements","","EDS-DA","High"
-"[EDS-DA] Hero Carousel - navigation (arrows, dots, autoplay)","Story","As a site visitor, I need to navigate between carousel slides using arrows and position indicators so that I can browse all promotional messages.
+- Eyebrow, heading, both CTAs, and Terms link map to the correct rendered elements","","EDS-DA","High"
+"[EDS-DA] Hero Carousel - navigation (arrows, counter, dots)","Story","As a site visitor, I need to navigate between carousel slides so that I can browse all 5 promotional messages.
 
-Design reference: circular left/right chevron arrows (vertically centered, GS green), and a row of 4 dots indicating slide position/active slide at bottom-center.
+VERIFIED navigation elements in Figma:
+- Green circular left/right slider arrows (vertically centered) - 'Arrow Main', color Green
+- A slide counter showing position ('1/5') with left/right controls
+- A dots indicator ('Carsoul_Icon', Only Dots White) with 5 dots; active dot highlighted, others InActive
 
 Tasks:
-- Implement previous/next arrow controls
-- Implement clickable slide-position dots reflecting active slide
-- Implement looping behavior (wrap from last to first)
-- Optional autoplay with configurable interval; pause on hover and on focus
+- Implement previous/next arrow controls (green circular, per design)
+- Implement the position counter (current/total, e.g. 1/5) if retained in build
+- Implement clickable white dots reflecting the active slide
+- Implement looping (wrap from last to first)
+- Optional autoplay with configurable interval; pause on hover and focus
 - Respect prefers-reduced-motion (disable autoplay/transitions)","- Arrows move to previous/next slide and loop correctly
 - Dots reflect the active slide and are clickable to jump to a slide
+- Counter (if used) updates to show current slide of total (e.g. 2/5)
 - If autoplay enabled: pauses on hover and keyboard focus
 - prefers-reduced-motion disables autoplay and reduces transitions
-- Controls have visible, on-brand styling matching the Figma","","EDS-DA","High"
+- Controls styled on-brand (green arrows, white dots) per Figma","","EDS-DA","High"
 "[EDS-DA] Hero Carousel - responsive behavior","Story","As a site visitor on any device, I need the Hero Carousel to adapt across breakpoints so that content remains legible and usable.
 
-Design reference: Desktop variant is 1280px wide, 720px tall, padding 60px 120px. Mobile/tablet variants exist in the Figma (GS_Responsive modes). Mobile-first CSS with min-width breakpoints at 600px / 900px / 1200px per project standards.
+VERIFIED: Desktop variant is 1280x720 (16:9), padding 60px 120px. Figma file uses GS_Responsive modes (Desktop/Tablet/Mobile). Mobile-first CSS with min-width breakpoints at 600px / 900px / 1200px per project standards.
 
 Tasks:
-- Implement mobile-first layout; stack/scale content for small screens
-- Reduce padding and heading size on mobile; ensure image focal point remains sensible
-- Ensure arrows/dots are touch-friendly (>=44x44px targets) on mobile
+- Implement mobile-first layout; scale content for small screens
+- Reduce padding (from 120px sides) and heading size (from 48px) on mobile
+- Keep background image focal point sensible across ratios
+- Ensure arrows/dots are touch-friendly (>=44x44px) on mobile
 - Verify no horizontal scroll at 320px and at 200%/400% zoom","- Layout adapts cleanly at 375px, 768px, 1280px and 1440px
 - Heading and padding scale down on mobile per design
 - Touch targets for arrows/dots meet 44x44px minimum
@@ -59,42 +71,51 @@ Tasks:
 - Background image remains visually balanced across breakpoints","","EDS-DA","Medium"
 "[EDS-DA] Hero Carousel - accessibility (WCAG 2.1 AA)","Story","As a user relying on assistive technology, I need the Hero Carousel to be fully accessible so that I can perceive and operate all slides and controls.
 
-Aligns with the project WCAG 2.1 AA + Section 508 requirements.
+Aligns with the project WCAG 2.1 AA + Section 508 requirements. Note: all slide text in the design is white over a photographic background, so a scrim/overlay is likely required to meet contrast.
 
 Tasks:
-- Add appropriate roles/labels (region with aria-label; group/aria-roledescription=carousel pattern)
-- Make arrows and dots keyboard operable with visible focus indicators
-- Provide accessible names for arrow buttons (Previous/Next slide) and dots (Go to slide N)
-- Ensure background images have appropriate alt text; decorative images use empty alt
-- Announce slide changes via aria-live (polite) without overwhelming AT
-- Verify text-over-image contrast meets 4.5:1 (add overlay/scrim if needed)","- Entire carousel operable by keyboard (Tab/Enter/Space/Arrow keys)
+- Add carousel pattern semantics (region with aria-label; aria-roledescription=carousel; slides as group with position labels)
+- Make arrows, counter, and dots keyboard operable with visible focus
+- Provide accessible names (Previous slide, Next slide, Go to slide N of 5)
+- Background images: meaningful alt text; decorative use empty alt
+- Announce slide changes via aria-live=polite without flooding AT
+- Verify white text over image meets 4.5:1 (apply overlay/scrim if needed)","- Entire carousel operable by keyboard (Tab/Enter/Space/Arrow keys)
 - Visible focus indicator on arrows and dots with >=3:1 contrast
-- Arrow and dot controls have descriptive accessible names
+- Controls have descriptive accessible names referencing slide position
 - Slide changes announced via aria-live; no keyboard trap
-- Text contrast over background image passes 4.5:1 (scrim applied if required)
+- White text over background passes 4.5:1 (scrim applied as needed)
 - axe-core scan returns zero violations on a page with the block","","EDS-DA","High"
-"[EDS-DA] Hero Carousel - slide content styling (eyebrow, heading, CTAs)","Story","As a brand stakeholder, I need each slide styled to match the Girl Scouts visual design so that the carousel is on-brand.
+"[EDS-DA] Hero Carousel - slide content styling (verified tokens)","Story","As a brand stakeholder, I need each slide styled to match the Girl Scouts visual design so that the carousel is on-brand.
 
-Design reference: eyebrow in small caps/sans, heading in large serif (white), primary CTA as outline button (white border, transparent fill, uppercase label 'SHOP PRODUCTS'), secondary CTA as uppercase text link with right chevron ('EXPLORE MORE >'), optional 'Terms & Conditions*' link bottom-right on a subtle scrim.
+VERIFIED typography & color from Figma (all text white #FFFFFF):
+- Eyebrow ('Shop Early and Save'): font 'Girl Scout' Bold, 20px / 24px line-height
+- Heading ('Get 20% Off On Orders Of $50 Or More*'): font 'Girl Scout' Bold, 48px / 58px line-height
+- Primary button label ('SHOP PRODUCTS'): 'Trefoil Sans' SemiBold(600), 16px / 21px, uppercase
+- Secondary link ('EXPLORE MORE'): 'Trefoil Sans' SemiBold(600), 16px / 21px, uppercase, right chevron (Arrow Main, white)
+- Terms ('Terms & Conditions*'): 'Trefoil Sans' SemiBold(600), 12px / 17px
+- Content frame: vertical, 8px gap (eyebrow to heading); content anchored top-left; Terms anchored bottom-right
 
 Tasks:
-- Apply GS design tokens (colors, typography, spacing) to slide elements
-- Style primary button (outline) and secondary link (text + chevron) states: default/hover/focus
-- Position Terms & Conditions link bottom-right
-- Ensure content max-width and left alignment per design","- Eyebrow, heading, and CTAs match Figma typography, color, and spacing
-- Primary button renders as outline style with correct hover/focus states
-- Secondary link shows chevron and correct hover/focus states
+- Map these to GS design tokens (fonts 'Girl Scout' and 'Trefoil Sans' must be available in fonts.css)
+- Style primary button (outline, white) and secondary text link with chevron: default/hover/focus
+- Position Terms link bottom-right; eyebrow+heading top-left
+- Confirm fonts are loaded/declared; add @font-face if missing","- Eyebrow, heading, CTAs, and Terms match Figma fonts, sizes, line-heights, and color
+- Primary button renders as white outline with correct hover/focus states
+- Secondary link shows right chevron with correct hover/focus states
 - Terms & Conditions link positioned bottom-right and legible
-- Visual matches Figma at desktop within reasonable tolerance","","EDS-DA","Medium"
+- 'Girl Scout' and 'Trefoil Sans' fonts load correctly (fallbacks defined)
+- Visual matches Figma at desktop within agreed tolerance","","EDS-DA","Medium"
 "[EDS-DA] Hero Carousel - QA, cross-browser & visual validation","Story","As a QA engineer, I need to validate the Hero Carousel against the Figma design and across browsers so that it meets quality and brand standards before release.
 
 Tasks:
-- Compare rendered block against Figma 'Banner' component (node 5168-208528)
+- Compare rendered block against Figma 'Banner' component (node 5168-208528) at desktop and responsive modes
 - Test in Chrome, Firefox, Safari, Edge (latest)
-- Test keyboard, screen reader (NVDA + VoiceOver), and zoom
-- Validate authoring flow end-to-end in DA with a real sample document
+- Test keyboard, screen reader (NVDA + VoiceOver), and 200%/400% zoom
+- Validate authoring flow end-to-end in DA with a real 5-slide sample document
+- Verify font rendering ('Girl Scout', 'Trefoil Sans')
 - Log and triage any visual or functional defects","- Rendered block matches Figma within agreed visual tolerance
 - Functions correctly in Chrome, Firefox, Safari, Edge
 - Passes keyboard + screen reader + 200%/400% zoom checks
-- Author can build/edit a 4-slide carousel in DA successfully
+- Author can build/edit a 5-slide carousel in DA successfully
+- Fonts render correctly with correct weights/sizes
 - Zero open Critical/Major defects at sign-off","","EDS-DA","Medium"
