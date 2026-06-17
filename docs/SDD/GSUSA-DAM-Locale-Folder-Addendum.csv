@@ -1,0 +1,12 @@
+Parent Branch (existing),Insert After Existing Row,New Locale Folder(s),Level,Rationale
+"/content/dam/gsusa/global/legal/manuals","R22 (manuals)","manuals/en  and  manuals/es","Level 7","Legal manuals are localized text documents; separate per-language files"
+"/content/dam/gsusa/global/legal/policies","R20 (policies)","policies/en  and  policies/es","Level 7","Policy documents carry language-specific text"
+"/content/dam/gsusa/cirriculum/Badge Booklets","R107 (Badge Booklets)","Badge Booklets/en  and  Badge Booklets/es","Level 6","Curriculum is the primary translated content set"
+"/content/dam/gsusa/cirriculum/Handouts","R108 (Handouts)","Handouts/en  and  Handouts/es","Level 6","Handouts are language-specific"
+"/content/dam/gsusa/cirriculum/Leader Guides","R109 (Leader Guides)","Leader Guides/en  and  Leader Guides/es","Level 6","Leader guides are translated documents"
+"/content/dam/gsusa/cirriculum/Training","R110 (Training)","Training/en  and  Training/es","Level 6","Training material is localized"
+"/content/dam/gsusa/cirriculum/Activity Guides","R111 (Activity Guides)","Activity Guides/en  and  Activity Guides/es","Level 6","Activity guides are translated documents"
+"/content/dam/gsusa/products/publication/badge-requirement","R75 (badge-requirement)","badge-requirement/en  and  badge-requirement/es","Level 7","Publications have per-language editions"
+"/content/dam/gsusa/products/publication/books","R76 (books)","books/en  and  books/es","Level 7","Books have language editions"
+"/content/dam/gsusa/marketing/campaigns/<campaign>","under each campaign as needed","<campaign>/en  and  <campaign>/es","Level 7","ONLY for campaign creative that contains text; image-only creative stays language-neutral"
+"BRANCHES TO LEAVE LANGUAGE-NEUTRAL (no locale folder)","-","global/brand (logos,icons,typography); products images (apparel,uniform,insignia,earned badges,fun patches,outdoor,toy/crafts); photoshoots; vendors; activity imagery; website logos-icon","-","These assets are visual and shared across all locales; localization handled via metadata only"
