@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[#EC-243] ACCS | Configure Custom Product Attributes and Attribute Sets for Catalog Management</title>
+    <meta http-equiv="Content-Type" Content="application/vnd.ms-word; charset=UTF-8">
+        <style type="text/css">
+
+.tableBorder, .grid
+{
+    background-color: #fff;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableBorder td, .grid td
+{
+    vertical-align: top;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+.noPadding
+{
+    padding: 0 !important;
+}
+
+h3 .subText
+{
+    font-size: 60%;
+    font-weight: normal;
+}
+
+.tabLabel
+{
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-bottom:none;
+    padding: 2px;
+    display: inline;
+}
+
+td.blank
+{
+    padding: 0;
+    margin: 0;
+}
+
+.blank td
+{
+    border: none;
+}
+
+#descriptionArea
+{
+    margin: 0;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+hr
+{
+    border-top:1px solid #aaa;
+}
+
+hr.fullcontent
+{
+  height: 15px;
+  padding: 10px 0;
+  background: #fff url('https://girlscouts.atlassian.net/images/icons/hr.gif') no-repeat scroll center;
+}
+
+</style>
+
+</head>
+<body>
+
+<table class="tableBorder" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#f0f0f0" width="100%" colspan="2" valign="top">
+                            <b><a id="parent_issue_summary" href="https://girlscouts.atlassian.net/browse/EC-242">ACCS | Catalog Management &amp; Product Configuration Framework</a></b>
+                <span style="font-size: 9px">(<a id="parent_issue_key" href="https://girlscouts.atlassian.net/browse/EC-242">EC-242</a>)</span>
+                <h3 class="formtitle"><img src="https://girlscouts.atlassian.net/images/icons/link_out_bot.gif" width="16" height="16" />
+                        [EC-243]&nbsp;<a href="https://girlscouts.atlassian.net/browse/EC-243">ACCS | Configure Custom Product Attributes and Attribute Sets for Catalog Management</a>
+            <span class="subText">
+               Created: 10/Mar/26                   &nbsp;Updated: 18/Jun/26
+
+                                            </span>
+            </h3>
+        </td>
+    </tr>
+    <tr>
+        <td width="20%"><b>Status:</b></td>
+        <td width="80%">To Do</td>
+    </tr>
+    <tr>
+        <td width="20%"><b>Project:</b></td>
+        <td width="80%"><a href="https://girlscouts.atlassian.net/secure/BrowseProject.jspa?id=15748">Ecommerce Transformation</a></td>
+    </tr>
+
+        <tr>
+            <td><b>Components:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+
+        <tr>
+            <td><b>Affects versions:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+
+        <tr>
+            <td><b>Fix versions:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+    
+            <td width="20%"><b>Parent:</b></td>
+        <td width="80%"><a href="https://girlscouts.atlassian.net/browse/EC-242">ACCS | Catalog Management &amp; Product Configuration Framework</a></td>
+    </table>
+
+<br />
+<table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#f0f0f0" valign="top" width="20%">
+            <b>Type:</b>
+        </td>
+        <td bgcolor="#ffffff" valign="top"  width="30%" >
+            Story
+        </td>
+
+                    <td bgcolor="#f0f0f0">
+                <b>Priority:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" nowrap>
+                Unprioritized
+            </td>
+            </tr>
+    <tr>
+                        <td bgcolor="#f0f0f0" valign="top" width="20%">
+                <b>Reporter:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top"  width="30%" >
+                                        
+                
+        
+            <a class="user-hover" rel="5f630e512b42470070d34ec0"
+                id="word_reporter_5f630e512b42470070d34ec0"
+                href="https://girlscouts.atlassian.net/secure/ViewProfile.jspa?accountId=5f630e512b42470070d34ec0">
+                    sairam
+                </a>
+
+                            </td>
+        
+                    <td bgcolor="#f0f0f0" width="20%">
+                <b>Assignee:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" nowrap  width="30%" >
+                                        
+                
+        
+            <a class="user-hover" rel="62ed05c125abc07e51c69f8c"
+                id="word_assignee_62ed05c125abc07e51c69f8c"
+                href="https://girlscouts.atlassian.net/secure/ViewProfile.jspa?accountId=62ed05c125abc07e51c69f8c">
+                    Priya Singh
+                </a>
+
+                            </td>
+            </tr>
+    	<tr>
+		<td bgcolor="#f0f0f0" width="20%">
+			<b>Resolution:</b>
+		</td>
+		<td bgcolor="#ffffff" valign="top" width="30%" nowrap>
+            				Unresolved
+                    </td>
+                    <td bgcolor="#f0f0f0" width="20%">
+                <b>Votes:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" width="30%" nowrap>
+                0
+            </td>
+        
+    </tr>
+    
+        <tr>
+        <td bgcolor="#f0f0f0" width="20%">
+            <b>Labels:</b>
+        </td>
+        <td id="labels-327165-value" class="value" bgcolor="#ffffff" valign="top" colspan="3" nowrap>
+                            None
+                    </td>
+    </tr>
+    
+    	<tr>
+        		<td bgcolor="#f0f0f0" width="20%"><b>Remaining Estimate:</b></td>
+        <td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            Not Specified
+            		</td>
+    </tr>
+    <tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Time Spent:</b></td>
+		<td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            Not Specified
+            		</td>
+	</tr>
+    <tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Original estimate:</b></td>
+		<td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            Not Specified
+            		</td>
+    </tr>
+    
+    </table>
+
+
+
+    <br />
+
+    	<table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+            
+
+        
+    
+
+
+    
+                        <tr>
+                <td bgcolor="#f0f0f0" width="20%" valign="top"><b>Sprint:</b></td>
+                <td id="customfield_10006-327165-value" class="value" bgcolor="#ffffff" width="80%">EC | Milestone1(Sprint 1)</td>
+            </tr>
+            </table>
+
+    <br/>
+
+    <table cellpadding="2" cellspacing="0" border="0" width="100%" align="center">
+    <tr>
+        <td bgcolor="#bbbbbb" width="1%" nowrap align="center">
+            &nbsp;<font color="#ffffff"><b>Description</b></font>&nbsp;
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    </table>
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td id="descriptionArea">
+            <p>Create and configure custom product attributes in <b>Adobe Commerce (ACCS)</b> to support GSUSA catalog management, merchandising, product personalization, and NetSuite product synchronization.</p>
+
+<p>The attributes will be used to define product metadata, pricing, classification, merchandising information, and personalization options required for GSUSA products.</p>
+
+<p>These attributes will also support integration with <b>NetSuite, Middleware, Adobe Assets, and EDS storefront</b>.</p>
+
+<p><a href="https://girlscoutsconnect.sharepoint.com/:x:/r/sites/GSMNewBuild/_layouts/15/Doc.aspx?sourcedoc=%7BA198BB49-5153-4383-AFDC-BE11813AC334%7D&amp;file=Matrix%20Child%20Items%20from%20NetSuite.xls&amp;action=default&amp;mobileredirect=true" title="smart-link" class="external-link" rel="nofollow noreferrer">https://girlscoutsconnect.sharepoint.com/:x:/r/sites/GSMNewBuild/_layouts/15/Doc.aspx?sourcedoc=%7BA198BB49-5153-4383-AFDC-BE11813AC334%7D&amp;file=Matrix%20Child%20Items%20from%20NetSuite.xls&amp;action=default&amp;mobileredirect=true</a> </p>
+
+<p><a href="https://girlscoutsconnect.sharepoint.com/:x:/r/sites/GSMNewBuild/_layouts/15/Doc.aspx?sourcedoc=%7B5C047F19-38E5-4CE3-98E4-D78E9B89D5B0%7D&amp;file=Matrix_Child_Items.csv&amp;action=default&amp;mobileredirect=true" title="smart-link" class="external-link" rel="nofollow noreferrer">https://girlscoutsconnect.sharepoint.com/:x:/r/sites/GSMNewBuild/_layouts/15/Doc.aspx?sourcedoc=%7B5C047F19-38E5-4CE3-98E4-D78E9B89D5B0%7D&amp;file=Matrix_Child_Items.csv&amp;action=default&amp;mobileredirect=true</a> </p>
+
+<h3><a name="AttributeCreation"></a>Attribute Creation</h3>
+
+<p>Attributes mentioned in below sheet would be created in ACCS- <a href="https://girlscoutsconnect.sharepoint.com/:f:/s/GSMNewBuild/IgDHWX040nRYSoIqX0uZJF9HAehyGvYan8JmadEwyCkBjlI?e=eVQy6R" title="smart-link" class="external-link" rel="nofollow noreferrer">https://girlscoutsconnect.sharepoint.com/:f:/s/GSMNewBuild/IgDHWX040nRYSoIqX0uZJF9HAehyGvYan8JmadEwyCkBjlI?e=eVQy6R</a></p>
+
+<hr />
+
+<h2><a name="Dependencies"></a>Dependencies</h2>
+
+<ul>
+	<li>NetSuite Product Data Model</li>
+	<li><b>EDS Product Display attibutes (GSUSA)</b></li>
+	<li>Adobe Assets Enablement</li>
+	<li><b>List of Searchable Attributes (GSUSA)</b></li>
+	<li><b>Facets</b>  (GSUSA)</li>
+</ul>
+
+
+<hr />
+
+<h2><a name="AcceptanceCriteria%3A"></a>Acceptance Criteria:</h2>
+
+<ul>
+	<li>All attributes created in ACCS</li>
+	<li>Attributes grouped into attribute sets (<a href="https://girlscouts.atlassian.net/browse/EC-244" title="smart-link" class="external-link" rel="nofollow noreferrer">https://girlscouts.atlassian.net/browse/EC-244</a> )</li>
+	<li>Attributes visible in Product Admin UI</li>
+	<li>Attributes mapped for NetSuite integration documentation</li>
+	<li>Sample products available in the Admin UI</li>
+</ul>
+
+            <br/>
+        </td>
+    </tr>
+    </table>
+
+Generated at Thu Jun 18 12:42:52 UTC 2026 by Priya Singh using Jira 1001.0.0-SNAPSHOT#100291-rev:985e388fc5ef01b54915d4c3cb53a2dd563e0a6b.
+
+</body>
+</html>
