@@ -1,0 +1,15 @@
+AEM Group,Maps to User Type,Path (jcr),Read,Modify,Create,Delete,Read ACL,Edit ACL,Replicate,Notes
+gsusa-content-creators,GSUSA Content Creators,/content/dam/gsusa,R,M,C,D,,,REPL,Full superset on all folders
+gsusa-content-managers,GSUSA Content Managers,/content/dam/gsusa/marketing,R,M,C,D,,,REPL,Write only on marketing
+gsusa-content-managers,GSUSA Content Managers,/content/dam/gsusa,R,,,,,,,View-only on all other folders
+gsusa-content-users,GSUSA Content Users,/content/dam/gsusa,R,,,,,,,Read + download only
+gsusa-dam-admins,Admin / IT,/,R,M,C,D,R-ACL,E-ACL,REPL,Full admin incl. ACL + replicate
+gsusa-tag-admins,Admin / IT (1-2),/content/cq:tags/girlscouts,R,M,C,D,,,,Tag creation restricted to 1-2
+council-{code}-collaborators,Council Collaborators,/content/dam/gsusa/councils/{code},R,M,C,D,,,,Full within OWN council folder (one group per council)
+council-{code}-collaborators,Council Collaborators,/content/dam/gsusa/global,R,,,,,,,View shared GSUSA global assets
+council-{code}-collaborators,Council Collaborators,/content/dam/gsusa/products,R,,,,,,,View shared product assets
+council-{code}-collaborators,Council Collaborators,/content/dam/gsusa/marketing,R,,,,,,,View shared marketing assets
+council-{code}-collaborators,Council Collaborators,/content/dam/gsusa/councils/100,R,,,,,,,"Girl Scout Central (GSUSA-owned, shared read)"
+vendor-{name},Vendor / Drop-ship,/content/dam/gsusa/vendors/{name},R,M,C,,,,,Own vendor folder only; primary path is Commerce
+agency-{name},Agency Partners,/content/dam/gsusa/{assigned},R,,,,,,,"Download-only, assigned folders"
+creative-{name},Creative Partners,/content/dam/gsusa/staging/{name},R,M,C,,,,,Upload to own staging folder only
