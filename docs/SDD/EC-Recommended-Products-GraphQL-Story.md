@@ -113,7 +113,7 @@ query Recommendations($type: RecommendationType!, $sku: String, $pageSize: Int) 
 - Product Card block (front-end) — consumer of this API.
 
 ## Open Items / Assumptions
-- Confirm GSUSA has **Adobe Commerce Product Recommendations** licensed, or whether a custom rule-based recommendation is required.
+- CONFIRMED: GSUSA has the ACCS license; **Adobe Commerce Product Recommendations** (Adobe Sensei) is available — use the managed service rather than a custom resolver.
 - Confirm which recommendation **types** are in scope for MVP (Recommended for You vs. Complete The Look vs. Frequently Bought Together).
 - Confirm exact GraphQL schema field names against the deployed ACCS services (Catalog Service / Live Search / Recommendations).
 - Confirm personalization requirements and any privacy constraints for anonymous vs. authenticated shoppers.
