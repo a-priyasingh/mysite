@@ -18,21 +18,28 @@
 ---
 
 ## Description
-Build a **Shop by Grade Level** block: a heading plus a single row of grade tiles. Each tile is an image + a button/label that links to the products for that Girl Scout level. The block is responsive across Desktop / Tablet / Mobile (per the Figma component set).
+Build a **Shop by Grade Level** block: a heading plus a single row of grade tiles. Each tile is a **top image** (the grade photo) + a decorative **background + icon** treatment + a button/label that links to the products for that Girl Scout level. The block is responsive across Desktop / Tablet / Mobile (per the Figma component set); on smaller viewports it becomes a swipeable carousel with dots.
 
 Verified grades (from Figma): **Daisy, Brownie, Junior, Cadette, Senior, Ambassador, Adult** (7 tiles).
+
+### Authoring Model (IMPORTANT)
+- **Only the top image is authorable** per tile (plus the label and link).
+- The **decorative background + icon combinations are code-defined** — the pairing of a given background shape with its icon (e.g., blue cloud + flower, beige trapezoid + butterfly, lavender circle + star, pink diamond + mushroom, peach square + rocket, green + butterfly, blue blob + bird) is fixed in code and NOT individually editable by the author.
+- The author can **choose which background (and its bundled icon) appears at any position** in the row — i.e., assign a code-provided background option to a tile/position. The author does not design or recombine background+icon; they only pick from the code-provided set and place it.
+- Net effect: authors control the **photo, label, link, and which background-style sits where**; the visual styling of each background+icon stays consistent and on-brand because it lives in code.
 
 ---
 
 ## Design Specs (from Figma)
 - **Heading**: "Shop by Grade Level" — Girl Scout Light(300) 36/43, black.
-- **Tile row** (Desktop, 1168×192): 7 tiles, each **146×192** = image (146×146, **aspect 1:1**) + a button (`Button_Styling`, 146×36) with the grade label.
+- **Tile row** (Desktop, 1168×192): 7 tiles, each **146×192** = top image (146×146, **aspect 1:1**) layered over a code-defined **decorative background + icon**, plus a button (`Button_Styling`, 146×36) with the grade label.
+- **Background + icon set (code-defined)** — observed pairings: blue cloud + flower, beige/tan trapezoid + butterfly, lavender circle + star, white/pink diamond + mushroom, peach square + rocket, green shape + butterfly, blue blob + bird. Each background is a distinct shape with a fixed accent icon; the full set is provided by code.
 - Tiles evenly spaced in a single row on desktop.
-- GS brand tokens; green `#005640` for button/active state.
+- GS brand tokens; green `#005640` for button/active/link state.
 - **Responsive variants** (verified in component set):
   - Desktop 1280×428 — 7 tiles in a row.
-  - Tablet 768×418 — fewer per row / wrap or scroll.
-  - Mobile 360×386 — horizontal scroll or 2–3 per row (confirm exact behavior).
+  - Tablet 768×418 — carousel showing ~4 tiles with dots indicator (labels shown as green text links).
+  - Mobile 360×386 — carousel showing ~2 tiles with dots indicator; swipe to advance.
 
 ## Hover / Touch
 - Tile image: subtle zoom (~1.03–1.05) + shadow lift on hover.
@@ -45,28 +52,39 @@ Verified grades (from Figma): **Daisy, Brownie, Junior, Cadette, Senior, Ambassa
 
 ## EDS DA Authoring Details
 - Authored as a block table (e.g., **`Shop by Grade`**) in the home page document.
-- Author-configurable:
-  - **Heading** text.
-  - **Grade tiles**: each tile = image (required), grade label (button text), and link (target PLP/category URL).
-  - **Order** of tiles (reorder by reordering rows).
+- Author-configurable per tile:
+  - **Top image** (required) — the grade photo.
+  - **Grade label** (button/link text).
+  - **Link** (target PLP/category URL).
+  - **Background option** — author selects one of the **code-provided background+icon styles** to apply at this position (e.g., a named option like `style-1`…`style-7`). The author chooses WHICH background goes WHERE; they cannot edit the background shape or its icon.
+- **NOT authorable**: the background shapes, the icons, and the background↔icon pairing — these are defined in code. The author only picks from the provided set and places it at a position.
+- **Order** of tiles (reorder by reordering rows).
 - Recommended fixed set of 7 (Daisy…Adult) but author can add/remove/rename.
 - Tiles render in a single responsive row automatically — author does not place grid coordinates.
 
 ## Authoring Acceptance Criteria
 - [ ] Author can add the block and set the heading.
-- [ ] Author can add/edit/remove/reorder grade tiles (image, label, link).
-- [ ] Tiles render in a responsive row (Desktop 7-up; tablet/mobile reflow/scroll).
+- [ ] Author can add/edit/remove/reorder grade tiles.
+- [ ] Per tile, author can set the **top image**, **label**, and **link**.
+- [ ] Per tile/position, author can **select a background option from the code-provided set**; the chosen background+icon renders at that position.
+- [ ] Author can place any available background option at any position (background choice is independent of which grade is in the tile).
+- [ ] Author **cannot** edit the background shapes, icons, or the background↔icon pairing (these are code-controlled).
+- [ ] If no background option is selected for a tile, a sensible default (or no decorative background) is applied without breaking layout.
+- [ ] Tiles render in a responsive row (Desktop 7-up; tablet/mobile carousel with dots).
 - [ ] Each tile links to the configured target; author can paste a category/PLP URL.
-- [ ] Omitting a tile does not break the row layout.
-- [ ] Preview reflects the row before publish.
+- [ ] Omitting a tile does not break the row/carousel layout.
+- [ ] Preview reflects the row (including selected backgrounds) before publish.
 
 ## User Acceptance Criteria
 - [ ] Block renders the heading and a row of grade tiles per design.
-- [ ] Each tile shows its image and grade label; clicking the tile/button navigates to that grade's products.
+- [ ] Each tile shows its top image over the author-selected code-defined background+icon, plus the grade label.
+- [ ] The background+icon styling matches the design exactly (code-controlled), regardless of which grade photo is placed in the tile.
+- [ ] Clicking the tile/button/label navigates to that grade's products.
+- [ ] Decorative backgrounds/icons are treated as presentation only (do not interfere with the image or link).
 - [ ] Images have alt text; labels legible.
-- [ ] Responsive: tiles reflow/scroll cleanly on tablet and mobile without overflow or distortion.
-- [ ] Keyboard: each tile is a focusable link with visible focus; logical tab order.
-- [ ] WCAG 2.1 AA: meaningful alt text (grade name), accessible link names, sufficient contrast, heading structure.
+- [ ] Responsive: Desktop shows 7 in a row; tablet/mobile show a swipeable carousel with a dots indicator; no overflow or distortion.
+- [ ] Keyboard: each tile is a focusable link with visible focus; logical tab order; carousel controls operable.
+- [ ] WCAG 2.1 AA: meaningful alt text (grade name), accessible link names, sufficient contrast, heading structure; decorative background/icon hidden from assistive tech.
 - [ ] Performance: images optimized and lazy-loaded (below the fold); aspect-ratio boxes prevent layout shift.
 
 ## Commerce Data Flow
@@ -84,5 +102,8 @@ Verified grades (from Figma): **Daisy, Brownie, Junior, Cadette, Senior, Ambassa
 ## Open Items / Assumptions
 - CONFIRM grade set: Figma shows Daisy, Brownie, Junior, Cadette, Senior, Ambassador, **Adult** (7 tiles) — confirm "Adult" is included and final.
 - Confirm each tile's link target: a category PLP vs. a `gs:programLevel`-filtered PLP.
-- Confirm tablet/mobile layout (wrap vs. horizontal scroll; tiles-per-row).
+- Confirm the **number of code-provided background+icon styles** and their naming (so authors can reference them, e.g. `style-1`…`style-N`).
+- Confirm how the background option is exposed to authors in DA (e.g., a value/keyword cell per tile that maps to the code style).
+- Confirm default background behavior when none is selected.
+- Confirm tablet/mobile tiles-per-view (observed ~4 tablet / ~2 mobile, carousel with dots).
 - Confirm whether this overlaps/duplicates the "Shop by Troop Year Plans" block (that one uses a dropdown; this one uses tiles) — keep both or consolidate.
