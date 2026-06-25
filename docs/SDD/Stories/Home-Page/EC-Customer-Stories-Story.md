@@ -44,13 +44,17 @@ Build a **Customer Stories** block: a heading, a carousel/gallery of story image
 ---
 
 ## EDS DA Authoring Details
-- Authored as a block table (e.g., **`Customer Stories`**) in the home page document.
-- Author-configurable:
-  - **Heading** text.
-  - **Stories/slides**: each = image(s) + headline + supporting text (+ optional per-slide link).
-  - **CTA**: label ("Know More") + link.
-  - Order of slides (reorder by reordering rows); autoplay/loop toggle.
-- The mixed-size image collage is a layout treatment of the block — author supplies images; the block arranges them per the design.
+Authored as a block table (e.g., **`Customer Stories`**) in the home page document. The mixed-size image collage is a layout treatment of the block — the author supplies images; the block arranges them per the design.
+
+| Displayed data | Content is sourced from | Required |
+|----------------|-------------------------|----------|
+| Section heading (Customer Stories) | EDS | Y |
+| Story image | EDS | N |
+| Story title / headline | EDS | N |
+| Story description / body copy | EDS | N |
+| Primary CTA label | EDS | N |
+| Primary CTA link | EDS | N |
+| Carousel / slide navigation controls | EDS | N |
 
 ## Authoring Acceptance Criteria
 - [ ] Author can add the block and set the heading.
