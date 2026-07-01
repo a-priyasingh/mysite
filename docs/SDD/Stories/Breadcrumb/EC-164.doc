@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[#EC-164] EDS | Breadcrumb</title>
+    <meta http-equiv="Content-Type" Content="application/vnd.ms-word; charset=UTF-8">
+        <style type="text/css">
+
+.tableBorder, .grid
+{
+    background-color: #fff;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableBorder td, .grid td
+{
+    vertical-align: top;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+.noPadding
+{
+    padding: 0 !important;
+}
+
+h3 .subText
+{
+    font-size: 60%;
+    font-weight: normal;
+}
+
+.tabLabel
+{
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-bottom:none;
+    padding: 2px;
+    display: inline;
+}
+
+td.blank
+{
+    padding: 0;
+    margin: 0;
+}
+
+.blank td
+{
+    border: none;
+}
+
+#descriptionArea
+{
+    margin: 0;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+hr
+{
+    border-top:1px solid #aaa;
+}
+
+hr.fullcontent
+{
+  height: 15px;
+  padding: 10px 0;
+  background: #fff url('https://girlscouts.atlassian.net/images/icons/hr.gif') no-repeat scroll center;
+}
+
+</style>
+
+</head>
+<body>
+
+<table class="tableBorder" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#f0f0f0" width="100%" colspan="2" valign="top">
+                            <b><a id="parent_issue_summary" href="https://girlscouts.atlassian.net/browse/EC-89">EDS Blocks</a></b>
+                <span style="font-size: 9px">(<a id="parent_issue_key" href="https://girlscouts.atlassian.net/browse/EC-89">EC-89</a>)</span>
+                <h3 class="formtitle"><img src="https://girlscouts.atlassian.net/images/icons/link_out_bot.gif" width="16" height="16" />
+                        [EC-164]&nbsp;<a href="https://girlscouts.atlassian.net/browse/EC-164">EDS | Breadcrumb</a>
+            <span class="subText">
+               Created: 03/Mar/26                   &nbsp;Updated: 01/Jul/26
+
+                                            </span>
+            </h3>
+        </td>
+    </tr>
+    <tr>
+        <td width="20%"><b>Status:</b></td>
+        <td width="80%">To Do</td>
+    </tr>
+    <tr>
+        <td width="20%"><b>Project:</b></td>
+        <td width="80%"><a href="https://girlscouts.atlassian.net/secure/BrowseProject.jspa?id=15748">Ecommerce Transformation</a></td>
+    </tr>
+
+        <tr>
+            <td><b>Components:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+
+        <tr>
+            <td><b>Affects versions:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+
+        <tr>
+            <td><b>Fix versions:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+    
+            <td width="20%"><b>Parent:</b></td>
+        <td width="80%"><a href="https://girlscouts.atlassian.net/browse/EC-89">EDS Blocks</a></td>
+    </table>
+
+<br />
+<table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#f0f0f0" valign="top" width="20%">
+            <b>Type:</b>
+        </td>
+        <td bgcolor="#ffffff" valign="top"  width="30%" >
+            Story
+        </td>
+
+                    <td bgcolor="#f0f0f0">
+                <b>Priority:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" nowrap>
+                Unprioritized
+            </td>
+            </tr>
+    <tr>
+                        <td bgcolor="#f0f0f0" valign="top" width="20%">
+                <b>Reporter:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top"  width="30%" >
+                                        
+                
+        
+            <a class="user-hover" rel="62ed05c125abc07e51c69f8c"
+                id="word_reporter_62ed05c125abc07e51c69f8c"
+                href="https://girlscouts.atlassian.net/secure/ViewProfile.jspa?accountId=62ed05c125abc07e51c69f8c">
+                    Priya Singh
+                </a>
+
+                            </td>
+        
+                    <td bgcolor="#f0f0f0" width="20%">
+                <b>Assignee:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" nowrap  width="30%" >
+                                        
+                
+        
+            <a class="user-hover" rel="62ed05c125abc07e51c69f8c"
+                id="word_assignee_62ed05c125abc07e51c69f8c"
+                href="https://girlscouts.atlassian.net/secure/ViewProfile.jspa?accountId=62ed05c125abc07e51c69f8c">
+                    Priya Singh
+                </a>
+
+                            </td>
+            </tr>
+    	<tr>
+		<td bgcolor="#f0f0f0" width="20%">
+			<b>Resolution:</b>
+		</td>
+		<td bgcolor="#ffffff" valign="top" width="30%" nowrap>
+            				Unresolved
+                    </td>
+                    <td bgcolor="#f0f0f0" width="20%">
+                <b>Votes:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" width="30%" nowrap>
+                0
+            </td>
+        
+    </tr>
+    
+        <tr>
+        <td bgcolor="#f0f0f0" width="20%">
+            <b>Labels:</b>
+        </td>
+        <td id="labels-325871-value" class="value" bgcolor="#ffffff" valign="top" colspan="3" nowrap>
+                            EDS                    </td>
+    </tr>
+    
+    	<tr>
+        		<td bgcolor="#f0f0f0" width="20%"><b>Remaining Estimate:</b></td>
+        <td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            Not Specified
+            		</td>
+    </tr>
+    <tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Time Spent:</b></td>
+		<td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            Not Specified
+            		</td>
+	</tr>
+    <tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Original estimate:</b></td>
+		<td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            Not Specified
+            		</td>
+    </tr>
+    
+    </table>
+
+
+
+    <br />
+
+    	<table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+            
+
+                <tr>
+            <td bgcolor="#f0f0f0" width=20% valign=top>
+                <b>Attachments:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top">
+                                    <img src="https://girlscouts.atlassian.net/images/icons/attach/image.gif" height="16" width="16" border="0" alt="PNG File">
+                    image-20260623-191343.png &nbsp;&nbsp;&nbsp;
+                            </td>
+        </tr>
+        
+    
+
+
+    
+                        <tr>
+                <td bgcolor="#f0f0f0" width="20%" valign="top"><b>Sprint:</b></td>
+                <td id="customfield_10006-325871-value" class="value" bgcolor="#ffffff" width="80%">EC | Milestone1(Sprint 1)</td>
+            </tr>
+            </table>
+
+    <br/>
+
+    <table cellpadding="2" cellspacing="0" border="0" width="100%" align="center">
+    <tr>
+        <td bgcolor="#bbbbbb" width="1%" nowrap align="center">
+            &nbsp;<font color="#ffffff"><b>Description</b></font>&nbsp;
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    </table>
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td id="descriptionArea">
+            <p><b>Figma Link:</b> <a href="https://www.figma.com/design/9LoLlN38Ej35qSVRcokDUu/Girlscouts_visualdesign_Master_File?node-id=3055-82983&amp;m=dev" title="smart-link" class="external-link" rel="nofollow noreferrer">https://www.figma.com/design/9LoLlN38Ej35qSVRcokDUu/Girlscouts_visualdesign_Master_File?node-id=3055-82983&amp;m=dev</a> </p>
+
+<p>      </p>
+
+<p><span class="image-wrap" style=""><img src="https://girlscouts.atlassian.net/rest/api/3/attachment/content/246442" alt="image-20260623-191343.png" width="1131" style="border: 0px solid black" /></span></p>
+
+<p>       </p>
+
+<p><ins><b>Functional Details</b></ins></p>
+
+<p>The breadcrumb component dynamically displays the user’s current location in the site hierarchy and enables navigation to parent categories across desktop and mobile devices.</p>
+
+<p><b>Design Specs (from Figma)</b></p>
+
+<p>· Breadcrumb bar: full-width, ~38–40px tall, placed below the header and above the page content (appears on PLP, PDP, Cart, Checkout).</p>
+
+<p>· First item = Home icon (24×24 icon), followed by category/page crumbs.</p>
+
+<p>· Separators: thin vertical line / chevron between items (Line, ~8×14).</p>
+
+<p>· Crumb text: ~17px line height; current (last) item is non-link, de-emphasized; preceding crumbs are links.</p>
+
+<p>· GS brand tokens; green #005640 for link hover/active.</p>
+
+<p><b>Hover / Touch</b></p>
+
+<p>· Crumb link: hover underline / color shift to green #005640; visible focus for keyboard.</p>
+
+<p>· Current (last) crumb: not clickable, no hover (visually distinct, e.g., muted/bold).</p>
+
+<p>· Home icon: hover/focus state; links to /.</p>
+
+<p>· Mobile: may truncate to  … +paren+t&gt; Current (collapse middle crumbs) to fit 360px; tap targets ≥44×44px height-permitting (use adequate hit area).</p>
+
+<p><b>Context Behavior</b></p>
+
+<div class='table-wrap'>
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'>Page </td>
+<td class='confluenceTd'>Breadcrumb trail source </td>
+</tr>
+<tr>
+<td class='confluenceTd'>PLP (category) </td>
+<td class='confluenceTd'>Home &gt; <span class="error">&#91;Category path from ACCS&#93;</span> (e.g., Home &gt; Apparel &gt; Dresses) </td>
+</tr>
+<tr>
+<td class='confluenceTd'>PDP (product) </td>
+<td class='confluenceTd'>Home &gt; <span class="error">&#91;Product&#39;s primary category path&#93;</span> &gt; Product Name </td>
+</tr>
+<tr>
+<td class='confluenceTd'>Search results </td>
+<td class='confluenceTd'>Home &gt; Search results</td>
+</tr>
+<tr>
+<td class='confluenceTd'>My Account</td>
+<td class='confluenceTd'>Home &gt; My Account</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Order Detail</td>
+<td class='confluenceTd'>Home&gt;My Account&gt; Order History&gt;Order Detail</td>
+</tr>
+</tbody></table>
+</div>
+
+
+
+
+<p>· On PDP, the last crumb is the product name (non-link).</p>
+
+<p>· On PLP, the last crumb is the current category (non-link).</p>
+
+<p><ins><b>Authoring Details</b></ins></p>
+
+<p>               None.</p>
+
+<p><ins><b>Site users</b></ins></p>
+
+<p>·        Breadcrumb reflects the actual taxonomy path, not navigation history.</p>
+
+<p>·        On Desktop, Breadcrumb displays full hierarchy, with current page as non-clickable. If It become large then ellipses would be add. eg- Home\..\&lt;parent&gt;\page</p>
+
+<p>Example: Home &gt; Shop by Grade / Daisy</p>
+
+<p>·        On Mobile, Breadcrumb displays a condensed hierarchy. Parent category remains clickable. Current page remains visible and non-clickable.</p>
+
+<p>·        Clicking any breadcrumb link navigates to the correct category page.</p>
+
+<p> </p>
+
+<p><b>User Acceptance Criteria</b> </p>
+
+<ul>
+	<li>Breadcrumb appears on PLP, PDP, Cart, and Checkout below the header. </li>
+	<li>Trail accurately reflects the current location: Home &gt; category path &gt; (product name on PDP). </li>
+	<li>All crumbs except the last are links and navigate to the correct category/home; the last crumb is current (non-link). </li>
+	<li>Home icon links to the homepage. </li>
+	<li>On mobile (360px), the trail fits — middle crumbs collapse (Home &gt; … &gt; Current) without breaking layout. </li>
+	<li>Keyboard: crumbs are focusable in order with visible focus; Enter activates links. </li>
+	<li>WCAG 2.1 AA: <tt>&lt;nav aria-label="Breadcrumb"&gt;</tt> landmark, ordered list markup, <tt>aria-current="page"</tt> on the last item, sufficient contrast, accessible separators (decorative, hidden from AT). </li>
+	<li>Structured data: emits BreadcrumbList <a href="http://schema.org" title="smart-link" class="external-link" rel="nofollow noreferrer">http://schema.org</a>  JSON-LD for SEO. </li>
+</ul>
+
+            <br/>
+        </td>
+    </tr>
+    </table>
+
+    <br/>
+
+    <table cellpadding="2" cellspacing="0" border="0" width="100%" align="center">
+    <tr>
+        <td bgcolor="#bbbbbb" width="1%" nowrap align="center">
+            &nbsp;<font color="#ffffff"><b>Comments</b></font>&nbsp;
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    </table>
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" class="grid" style="margin: 0;">
+                <tr id="comment-header-516729"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                    
+                
+        
+            <a class="user-hover" rel="62ed05c125abc07e51c69f8c"
+                id="word_commented_62ed05c125abc07e51c69f8c"
+                href="https://girlscouts.atlassian.net/secure/ViewProfile.jspa?accountId=62ed05c125abc07e51c69f8c">
+                    Priya Singh
+                </a>
+
+                                        <font size="-2">
+            [
+                <font color="#336699">30/Jun/26</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-516729"><td bgcolor="#ffffff">
+            <p>Would be Assigned to Thomas for development. Assigning to Kelly for approval.</p>
+        </td></tr>
+                <tr id="comment-header-516730"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                    
+                
+        
+            <a class="user-hover" rel="62ed05c125abc07e51c69f8c"
+                id="word_commented_62ed05c125abc07e51c69f8c"
+                href="https://girlscouts.atlassian.net/secure/ViewProfile.jspa?accountId=62ed05c125abc07e51c69f8c">
+                    Priya Singh
+                </a>
+
+                                        <font size="-2">
+            [
+                <font color="#336699">30/Jun/26</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-516730"><td bgcolor="#ffffff">
+            <p><a href="https://girlscouts.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A814e1a88-0b5e-43b7-9528-7a68556fa5b5" class="user-hover" rel="712020:814e1a88-0b5e-43b7-9528-7a68556fa5b5" data-account-id="712020:814e1a88-0b5e-43b7-9528-7a68556fa5b5" accountid="712020:814e1a88-0b5e-43b7-9528-7a68556fa5b5" rel="noreferrer">Kelly Kennedy</a> - Please review and approve</p>
+        </td></tr>
+                <tr id="comment-header-516938"><td bgcolor="#f0f0f0">
+            Comment by  
+                                                    
+                
+        
+            <a class="user-hover" rel="712020:814e1a88-0b5e-43b7-9528-7a68556fa5b5"
+                id="word_commented_712020:814e1a88-0b5e-43b7-9528-7a68556fa5b5"
+                href="https://girlscouts.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A814e1a88-0b5e-43b7-9528-7a68556fa5b5">
+                    Kelly Kennedy
+                </a>
+
+                                        <font size="-2">
+            [
+                <font color="#336699">30/Jun/26</font>
+
+                            ]
+            </font>
+
+        </td></tr>
+        <tr id="comment-body-516938"><td bgcolor="#ffffff">
+            <p><a href="https://girlscouts.atlassian.net/secure/ViewProfile.jspa?accountId=62ed05c125abc07e51c69f8c" class="user-hover" rel="62ed05c125abc07e51c69f8c" data-account-id="62ed05c125abc07e51c69f8c" accountid="62ed05c125abc07e51c69f8c" rel="noreferrer">Priya Singh</a>  I have a few clarification questions on this ticket:</p>
+
+<ol>
+	<li>Can you help me understand why this is classified as an <b>EDS</b> ticket? Since there are no authoring requirements and the breadcrumb is dynamically generated from the Commerce taxonomy, I would have expected this to be a Commerce storefront component rather than an EDS feature.</li>
+	<li>Is the scope of this ticket limited to the commerce pages listed (PLP, PDP, Cart, Checkout)? In our designs, I recall breadcrumbs also appearing on pages such as <b>My Account</b>. If those pages are intended to have breadcrumbs as well, should they be included here or covered by a separate ticket?</li>
+	<li>I noticed a potential inconsistency in the mobile breadcrumb behavior. The acceptance criteria describe the collapsed format as <b>Home &gt; … &gt; Current</b>, while the functional details state that the <b>parent category remains clickable</b>. Could we clarify the intended behavior? From a usability perspective, preserving the immediate parent (when possible) seems like the better experience since it allows users to easily navigate back one level.</li>
+</ol>
+
+        </td></tr>
+            </table>
+Generated at Wed Jul 01 04:02:40 UTC 2026 by Priya Singh using Jira 1001.0.0-SNAPSHOT#100292-rev:5fda9e0fdd2f2fe2b6bc3376de24f51bf166a518.
+
+</body>
+</html>
