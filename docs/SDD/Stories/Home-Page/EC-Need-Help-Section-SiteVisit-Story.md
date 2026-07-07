@@ -71,6 +71,80 @@
 
 ---
 
+## Acceptance Criteria (Given / When / Then)
+
+### Rendering under different content conditions
+**Scenario R1 — All fields provided**
+- **Given** the Need Help block has a message, supporting line, and CTA
+- **When** a visitor loads the page
+- **Then** the message, supporting line, and CTA all render in the designed layout.
+
+**Scenario R2 — Supporting line empty**
+- **Given** the block has a message and CTA but no supporting line
+- **When** the section renders
+- **Then** only the message and CTA show, with no empty gap where the supporting line would be.
+
+**Scenario R3 — CTA omitted**
+- **Given** the block has no CTA label/link
+- **When** the section renders
+- **Then** the message (and supporting line) render with no CTA and the layout stays intact.
+
+**Scenario R4 — Message empty**
+- **Given** the block has no message
+- **When** the section renders
+- **Then** the remaining elements render with no broken layout and no placeholder text.
+
+**Scenario R5 — All fields empty**
+- **Given** the block has no content
+- **When** the page renders
+- **Then** no broken/empty shell is shown (the section collapses or renders nothing).
+
+### Interaction behavior
+**Scenario I1 — CTA navigation**
+- **Given** the CTA has an authored URL
+- **When** the visitor activates the CTA
+- **Then** the browser navigates to the authored Help/FAQ URL.
+
+**Scenario I2 — Keyboard activation**
+- **Given** a keyboard user is on the page
+- **When** they Tab to the CTA and press Enter/Space
+- **Then** the CTA activates and navigates to its URL.
+
+### Responsive behavior
+**Scenario P1 — Desktop**
+- **Given** a viewport ≥1200px
+- **When** the section renders
+- **Then** it displays as a single-row strip (~85px) per the Desktop design.
+
+**Scenario P2 — Mobile**
+- **Given** a 360px viewport
+- **When** the section renders
+- **Then** content stacks / the CTA wraps below, with no horizontal scroll and all text visible, and the CTA hit area is ≥44×44px.
+
+### Accessibility behavior (WCAG 2.1 AA)
+**Scenario X1 — Visible focus**
+- **Given** a keyboard user
+- **When** the CTA receives focus
+- **Then** a visible focus indicator (≥3:1 contrast) is shown.
+
+**Scenario X2 — Accessible name & contrast**
+- **Given** a screen-reader / assistive-tech user
+- **When** they reach the CTA
+- **Then** the CTA exposes an accessible name matching its label, and text/CTA meet contrast (normal text ≥4.5:1).
+
+**Scenario X3 — Reduced motion**
+- **Given** the user has `prefers-reduced-motion` enabled
+- **When** they hover/focus the CTA
+- **Then** the hover/arrow motion is disabled.
+
+### Performance
+**Scenario F1 — No layout shift**
+- **Given** the page is loading
+- **When** the Need Help section renders
+- **Then** it causes no cumulative layout shift and does not block LCP.
+
+---
+
 ## Commerce Data Flow
 - **None** — authored content only; CTA is an authored link to the Help/FAQ page. No ACCS catalog data.
 

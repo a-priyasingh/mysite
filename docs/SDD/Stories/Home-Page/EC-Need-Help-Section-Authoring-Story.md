@@ -44,6 +44,50 @@
 
 ---
 
+## Acceptance Criteria (Given / When / Then)
+
+**Scenario A1 — Add the block**
+- **Given** an author is editing a page document in DA
+- **When** they insert the `Need Help` block
+- **Then** the block appears in the document and renders in preview.
+
+**Scenario A2 — Author the message**
+- **Given** the `Need Help` block is in the document
+- **When** the author enters message text and previews/publishes
+- **Then** the entered message renders as the section heading.
+
+**Scenario A3 — Optional supporting line omitted**
+- **Given** the block has a message but no supporting line
+- **When** the author previews/publishes
+- **Then** the block renders the message with no supporting line and no empty gap.
+
+**Scenario A4 — Author the CTA label and link**
+- **Given** the block is in the document
+- **When** the author enters a CTA label and a URL
+- **Then** the CTA renders with that label and links to the given URL.
+
+**Scenario A5 — CTA omitted**
+- **Given** the block has no CTA label and no CTA link
+- **When** the author previews/publishes
+- **Then** no CTA is rendered and the block layout remains intact.
+
+**Scenario A6 — No mandatory fields**
+- **Given** the author leaves any subset of fields empty (including all)
+- **When** they save and preview
+- **Then** the block saves and renders without error.
+
+**Scenario A7 — Graceful blank**
+- **Given** one or more fields are empty
+- **When** the block renders
+- **Then** only the empty elements are omitted, with no broken layout and no placeholder text.
+
+**Scenario A8 — Preview parity**
+- **Given** the author has authored/edited the block
+- **When** they view DA preview
+- **Then** the preview matches what will render on the published site.
+
+---
+
 ## Dependencies
 - DA authoring environment / block registration.
 - Help / FAQ page must exist for the CTA link target (authored URL).
