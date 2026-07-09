@@ -48,6 +48,41 @@
 
 ---
 
+## Per-Layer Figma Properties (Caregiver / Default / Desktop, 274×430)
+Extracted from Figma node 2697-351418. Hex values are the resolved colors; the **Token** column lists the bound Figma variable ID where the value is tokenized (variable *names* require design-system/Enterprise access to resolve — IDs given so the design team can map them). Fonts: **Trefoil Sans** throughout.
+
+| Layer | Size (W×H) | Font (family wt size/lh) | Color (hex) | Border / Radius | Padding / Gap | Token (Figma variable id) |
+|-------|-----------|--------------------------|-------------|-----------------|---------------|---------------------------|
+| Card (root) | 274×430 | — | — | stroke #D5CA9F | gap 8 | strokes bound |
+| Image frame | 274×274 | — | — | stroke #D5CA9F, radius 4 | — | strokes bound |
+| Product image | 274×274 | — | image fill | — | — | — |
+| Hover image (overlay) | 274×274 | — | #FFFFFF, opacity 0 | — | — | — |
+| Wishlist heart | 32×32 | — | #FFFFFF | — | — | — |
+| Badge "NEW" tag | 49×25 | — | fill #00B451 | radius 6 | pad 12/4, gap 10 | VariableID:4:1285 |
+| Badge "NEW" label | 25×15 | 500 12/14 | #000000 | — | — | VariableID:4:1270 |
+| Badge "Almost Gone" tag | 103×25 | — | fill #F7BE00 | radius 6 | pad 12/4 | VariableID:696:36474 |
+| Badge "Almost Gone" label | 79×15 | 500 12/14 | #2D2E33 | — | — | VariableID:4:1271 |
+| Add to Cart (primary) | 137×36 | — | fill #D9F3E3 | stroke #98DEB3, radius 8 | pad 16/8, gap 4 | VariableID:3702:114502 |
+| Add to Cart label | 85×19 | 500 14/18 | #005640 | — | — | VariableID:225:5670 |
+| Add to Cart icon | 13×12 | — | #005640 | — | — | VariableID:4:1322 |
+| Add to Cart (alt/compact) | 48×36 | — | fill #F0FAF4 | stroke #00AE43, radius 6 | pad 16/8 | VariableID:700:26263 |
+| Best Seller banner | 274×25 | — | fill #5C1F8B | — | pad 0/4 | VariableID:45:67 |
+| Best Seller label | 154×17 | 500 12/17 | #FFFFFF | — | — | — |
+| Size swatch (selected) | 36×24 | 400 12/17 | fill #D5CA9F, text #2D2E33 | — | pad 8/4 | VariableID:2725:24281 / text 4:1271 |
+| Size swatch (default) | ~30×24 | 400 12/17 | text #2D2E33 | stroke #D5CA9F | pad 8/4 | text VariableID:4:1271 |
+| Product name | 274×45 | 500 16/22 | #000000 | — | — | VariableID:…531:95 |
+| Price (current) | 49×23 | 500 16/22 | #005640 | — | gap 8 | VariableID:…531:121 |
+| Price (strikethrough) | 41×19 | 400 14/18 | #626262 | — | — | VariableID:2751:46499 |
+| Discount label "30% Off" | 44×17 | 500 12/17 | #AF0061 | — | — | VariableID:…531:113 |
+| Discount pill bg | 55×21 | — | #FCE8A6 | radius 2 | pad 5/2 | VariableID:4889:51655 |
+| Text container | 274×148 | — | — | — | gap 12 | — |
+
+**Color inventory (resolved hex):** GS green `#005640` (price, primary CTA text/icon); bright green `#00B451` / `#00AE43` (NEW tag / alt CTA border); light greens `#D9F3E3` / `#F0FAF4` / `#98DEB3` (CTA fills/strokes); tan `#D5CA9F` (card + swatch borders); purple `#5C1F8B` (Best Seller); amber `#F7BE00` / `#FCE8A6` (Almost Gone / discount pill bg); magenta/pink `#AF0061` (discount text); reds `#9C0000` (sale bg); neutrals `#000000`, `#2D2E33`, `#626262`, `#4E4E4E`, `#FFFFFF`.
+
+> Note: Every colored element is bound to a Figma **variable** (design token) — IDs captured above. The token **names** (e.g., `gs/color/green/600`) could not be pulled because the Figma variables REST endpoint requires an Enterprise plan (403 on this file). Ask the design team to export the variable name→value map, or map these values to the GSUSA design tokens in `styles.css` during build.
+
+---
+
 ## EDS DA Authoring Details
 
 | Displayed data | Content is sourced from | Required |
